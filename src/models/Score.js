@@ -1,12 +1,12 @@
-import User from './User';
-
 export default class Score {
     constructor () {
         this.premierLance = 0;
         this.secondLance  = 0;
         this.premierLanceDouble = false;
         this.secondLanceDouble  = false;
-        this.tourCourant        = 1
+
+        this.coeffPremierLance  = 1
+        this.coeffSecondLance  = 1
     }
 
     updatePremierLancer (score) {
@@ -14,7 +14,7 @@ export default class Score {
     }
 
     updateSecondLancer (score) {
-        this.SecondLance = score;
+        this.secondLance = score;
     }
 
     isStrike() {
@@ -25,19 +25,14 @@ export default class Score {
     } 
 
     isSpare() {
-        if (this.premierLance + this.secondLance == 10) {
+        if (!this.isStrike() && this.premierLance + this.secondLance == 10) {
             return true;
         }
         return false;
     }
 
     getScoreTotal() {
-        let coeff1 = 1;
-        if (this.premierLanceDouble) coeff1++; 
-        let coeff2 = 1;
-        if (this.premierLanceDouble) coeff2++; 
-
-        return coeff1*this.premierLance + coeff2*this.secondLance
+        return this.coeffPremierLance*this.premierLance + this.coeffSecondLance*this.secondLance
     }
 
     getScorePremierLance() {
@@ -53,14 +48,6 @@ export default class Score {
     }
 
     setSecondLanceDouble() {
-        this.premierLanceDouble = true;
+        this.secondLanceDouble = true;
     }
-
-    tourSuivant() {
-        this.tourCourant++;
-        for (this.Users in User) {
-            User.tourCourant = this.tourCourant;
-        }
-    }
-
 }

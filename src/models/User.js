@@ -1,7 +1,9 @@
-import ObjScore from './Game';
+import ObjScore from './Score';
 
 export default class User {
     constructor(nom) {
+        if (typeof nom !== 'string') throw new Error("Use String Type");
+
         this.nom         = nom;
         this.score       = [];
         this.tourCourant = 1;
@@ -14,21 +16,34 @@ export default class User {
     ajouterScore1(score1) {
         let n = this.tourCourant - 1;
 
+        if (!Number.isInteger(score1) || score1 < 0) throw new Error("Use Int Type")
+        if (score1 > 10) throw new Error("> 10")
+
         this.score[n].updatePremierLancer(score1);
         
         if (this.score[n].isStrike()) {
             this.score[n].updateSecondLancer(0);
             this.score[n + 1].setPremierLanceDouble();
             this.score[n + 1].setSecondLanceDouble();
+            this.score[n + 1].coeffPremierLance++;
+            this.score[n + 1].coeffSecondLance++;
+
+            if (this.score[n].secondLanceDouble) {
+                this.score[n + 1].coeffPremierLance++;
+            }
         }
     }
 
     ajouterScore2(score2) {
         let n = this.tourCourant - 1;
 
+        if (!Number.isInteger(score2) || score2 < 0) throw new Error("Use Int Type")
+        if (this.score[n].premierLance + score2 > 10) throw new Error("> 10")
+
         this.score[n].updateSecondLancer(score2);
 
         if (this.score[n].isSpare()) {
+            this.score[n + 1].coeffPremierLance++;
             this.score[n + 1].setPremierLanceDouble();
         }
     }
@@ -42,8 +57,26 @@ export default class User {
     }
 
     getScoreTotal() {
-        let n = this.tourCourant - 1;
+        let scoreTotal = 0;
+        for (let i = 0; i < this.score.length; i++) {
+            scoreTotal += this.score[i].getScoreTotal();
+        }
+        return scoreTotal;
+    }
+
+    getScoreTour(tour) {
+        let n = tour - 1;
         return this.score[n].getScoreTotal();
+    }
+
+    getScoreTourPremierLance(tour) {
+        let n = tour - 1;
+        return this.score[n].premierLance;
+    }
+
+    getScoreTourSecondLance(tour) {
+        let n = tour - 1;
+        return this.score[n].secondLance;
     }
 
     getScorePremierLance() {
@@ -57,7 +90,7 @@ export default class User {
     }
 
     getNom() {
-        return this.getNom;
+        return this.nom;
     }
 
     /*tourBonusAvailable() {
