@@ -4,7 +4,9 @@ export default class Score {
         this.secondLance  = 0;
         this.premierLanceDouble = false;
         this.secondLanceDouble  = false;
-        this.tourCourant        = 1
+
+        this.coeffPremierLance  = 1
+        this.coeffSecondLance  = 1
     }
 
     updatePremierLancer (score) {
@@ -30,12 +32,7 @@ export default class Score {
     }
 
     getScoreTotal() {
-        let coeff1 = 1;
-        if (this.premierLanceDouble) {coeff1++; }
-        let coeff2 = 1;
-        if (this.secondLanceDouble) {coeff2++; }
-
-        return coeff1*this.premierLance + coeff2*this.secondLance
+        return this.coeffPremierLance*this.premierLance + this.coeffSecondLance*this.secondLance
     }
 
     getScorePremierLance() {
