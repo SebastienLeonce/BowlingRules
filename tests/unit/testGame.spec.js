@@ -20,7 +20,9 @@ describe('models/Game.js', () => {
         jeux.addPlayer("Jacques");
 
         expect(jeux.tourCourant).to.equal(1);
+        expect(jeux.Users[2].tourCourant).to.equal(1);
         jeux.tourSuivant();
         expect(jeux.tourCourant).to.equal(2);
+        expect(jeux.Users[2].tourCourant).to.equal(2);
     })
 })
