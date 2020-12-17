@@ -20,7 +20,7 @@ npm run build
 npm run lint
 ```
 
-### Run unit tests 
+### Run unit tests Mocha Framework
 ```
 npm run test:unit
 ```
