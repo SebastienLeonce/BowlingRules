@@ -1,7 +1,8 @@
 <template>
   <div class="hello uk-card uk-card-default uk-position-center">
     <img class="picture" alt="Vue logo" src="../assets/bowling.png">
-    <h1>{{ msg }}</h1>
+    <h1 class="uk-text-center">BOOLING APP</h1>
+    <router-link to="/game" class="uk-button uk-button-default">JOUER</router-link>
   </div>
 </template>
 
@@ -9,7 +10,13 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+  },
+  data: function(){
+    return{
+
+    }
+  }, 
+  methods: {
   }
 }
 </script>
