@@ -1,7 +1,7 @@
 <template>
     <div class="uk-card uk-card-default">
         <div v-if="playerList.length" class="uk-margin uk-padding">
-        <h1 class="uk-margin uk-padding uk-position-left">Joueurs</h1><br><br><br>
+        <p class="uk-margin uk-padding uk-position-left">JOUEURS</p><br><br><br>
             <div v-for="player in playerList" v-bind:key="player">
                 <p style="text-align: left; width: 70%;">{{ player.nom }}</p>
             </div>

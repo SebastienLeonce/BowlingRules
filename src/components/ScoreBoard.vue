@@ -1,5 +1,5 @@
 <template>
-    <div class="uk-card uk-card-default">
+    <div class="uk-card uk-card-default uk-padding">
         <table class="uk-table uk-table-responsive uk-table-divider">
             <thead>
                 <tr>
