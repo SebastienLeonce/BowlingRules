@@ -71,5 +71,41 @@ describe('models/User.js', () => {
         User1.ajouterScore1(3);
         User1.ajouterScore2(5);
         expect(User1.getScoreTour(2)).to.equal(11);
+
+        User1 = new User("Jacques");
+        for (let i = 0; i < 10; i++) {
+            User1.ajouterScore1(10);
+            User1.tourCourant = User1.tourCourant+1;
+        }
+        expect(User1.getScoreTotal()).to.equal(270);
+
+        User1 = new User("Jacques");
+        for (let i = 0; i < 10; i++) {
+            User1.ajouterScore1(5);
+            User1.ajouterScore2(5);
+            User1.tourCourant = User1.tourCourant+1;
+        }
+        expect(User1.getScoreTotal()).to.equal(145);
+
+        User1 = new User("Jacques");
+        for (let i = 0; i < 10; i++) {
+            User1.ajouterScore1(9);
+            User1.ajouterScore2(1);
+            User1.tourCourant = User1.tourCourant+1;
+        }
+        expect(User1.getScoreTotal()).to.equal(181);
+    })
+
+    it('testValidInput', () => {
+        let User1 = new User("Jacques");
+        assert.throw(function() { User1.ajouterScore1(5.5); }, Error, /Use Int Type/);
+        assert.throw(function() { User1.ajouterScore1(-5);  }, Error, /Use Int Type/);
+
+        assert.throw(function() { User1.ajouterScore2(5.5); }, Error, /Use Int Type/);
+        assert.throw(function() { User1.ajouterScore2(-5);  }, Error, /Use Int Type/);
+
+        User1.ajouterScore1(6);
+        assert.throw(function() { User1.ajouterScore2(5);  }, Error, /> 10/);
+        assert.throw(function() { User1.ajouterScore1(15); }, Error, /> 10/);
     })
 })
