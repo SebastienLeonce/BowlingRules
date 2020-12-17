@@ -2,6 +2,8 @@ import ObjScore from './Game';
 
 export default class User {
     constructor(nom) {
+        if (typeof nom !== 'string') throw new Error("Use String Type");
+
         this.nom         = nom;
         this.score       = [];
         this.tourCourant = 1;
@@ -57,7 +59,7 @@ export default class User {
     }
 
     getNom() {
-        return this.getNom;
+        return this.nom;
     }
 
     /*tourBonusAvailable() {

@@ -1,13 +1,16 @@
-import User from '/src/games/User';
-import { expect } from 'chai'
+import User from '../../src/models/User';
+import { expect, assert } from 'chai'
 
 let User1 = new User("Jacques");
-let User2 = new User(546);
-let User3 = new User(null);
 
 describe('models/User.js', () => {
-    it('User test : ["Jacque", 546, null]', () => {
-        expect(User1.getNom()).to.equal("Jacques")
+    it('User test : ["Jacques", 546, null]', () => {
+        expect(User1.getNom()).to.equal("Jacques");
+        assert.throw(function() { new User(546) }, Error, /Use String Type/);
+        assert.throw(function() { new User(null) }, Error, /Use String Type/);
     })
-  })
-  
+
+    it('testStrike', () => {
+        
+    })
+})
