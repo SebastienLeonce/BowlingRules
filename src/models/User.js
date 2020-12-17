@@ -69,6 +69,16 @@ export default class User {
         return this.score[n].getScoreTotal();
     }
 
+    getScoreTourPremierLance(tour) {
+        let n = tour - 1;
+        return this.score[n].premierLance;
+    }
+
+    getScoreTourSecondLance(tour) {
+        let n = tour - 1;
+        return this.score[n].secondLance;
+    }
+
     getScorePremierLance() {
         let n = this.tourCourant - 1;
         return this.score[n].getScore1();
