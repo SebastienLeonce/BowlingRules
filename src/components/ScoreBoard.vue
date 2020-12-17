@@ -20,18 +20,17 @@
             <tbody>
                 <tr v-for="player in playerList" v-bind:key="player">
                     <td>{{player.nom}}</td>
-                    <!-- <td>{{player.getScore1Tour(1)}} | {{player.getScore2Tour(1)}}</td> -->
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}} | {{0}}</td>
-                    <td>{{0}}</td>
+                    <td>{{player.getScoreTourPremierLance(1)}} | {{player.getScoreTourSecondLance(1)}} </td>
+                    <td>{{player.getScoreTourPremierLance(2)}} | {{player.getScoreTourSecondLance(2)}} </td>
+                    <td>{{player.getScoreTourPremierLance(3)}} | {{player.getScoreTourSecondLance(3)}} </td>
+                    <td>{{player.getScoreTourPremierLance(4)}} | {{player.getScoreTourSecondLance(4)}} </td>
+                    <td>{{player.getScoreTourPremierLance(5)}} | {{player.getScoreTourSecondLance(5)}} </td>
+                    <td>{{player.getScoreTourPremierLance(6)}} | {{player.getScoreTourSecondLance(6)}} </td>
+                    <td>{{player.getScoreTourPremierLance(7)}} | {{player.getScoreTourSecondLance(7)}} </td>
+                    <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
+                    <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
+                    <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
+                    <td>{{player.getScoreTotal()}}</td>
                 </tr>
             </tbody>
         </table>
@@ -49,7 +48,7 @@ export default {
       }
     }, 
     mounted: function(){
-        console.log(this.$parent.$parent.gameObj.Users)
+        console.log(this.$parent.$parent.gameObj.Users);
     }
 }
 </script>
