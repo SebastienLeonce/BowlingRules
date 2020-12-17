@@ -1,5 +1,5 @@
 <template>
-    <div class="rulestext uk-card uk-card-default uk-position-center">
+    <div class="rulestext uk-card uk-card-default uk-position-center uk-overflow-auto">
         Une partie de bowling se joue en 10 tours.
         A chaque tour, le but est de <strong>renverser les 10 quilles</strong>.
         Les participants jouent chacun leur tour. A chaque tour, lors du premier lancer, le joueur note dans l’application le nombre de quilles renversées :

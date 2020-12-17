@@ -6,6 +6,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data: function(){
+      return{
+          gameObj: "", //TODO Ajouter l'objet Game,
+          formDoned: false
+      }   
+  },
+  mounted: function(){
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

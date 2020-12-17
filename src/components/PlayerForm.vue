@@ -1,6 +1,8 @@
 <template>
-  <div class="playerForm uk-card uk-card-default uk-position-center">
+  <div class="playerForm uk-card uk-card-default uk-position-center uk-padding">
     <div id="app">
+      <p class="uk-heading-medium">BOWLING</p>
+      <br>
          <p v-if="errors.length">
             <strong>Please correct the following error(s):</strong>
             <ul>
@@ -8,30 +10,30 @@
             </ul>
         </p>
         <div v-if="playerList.length">
-            <strong>Current Player</strong>
             <div v-for="player in playerList" v-bind:key="player">
-                {{ player }} 
+                <p class="uk-inline" style="text-align: left; width: 70%;">{{ player }}</p>
                 <button type="button" uk-close v-on:click="supprPlayer(player)"></button>
             </div>
         </div>
 
         <div>
             <div class="uk-margin">
-                <div class="uk-inline">
-                    <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
-                    <input class="uk-input"
+                <div class="uk-inline" style="width: 70%;">
+                    <input class="uk-search-input"
                     id="name"
                     v-model="name"
                     type="text"
                     name="name"
                     autocomplete="off"
+                    placeholder="Name..."
                     >
+                    <span class="uk-search-input uk-heading-small" v-on:click="checkForm()">+</span>
                 </div>
             </div>
         </div>
 
         <p>
-            <button v-on:click="checkForm()">Valider</button>
+            <button class="uk-button uk-button-default uk-position-bottom-center" v-on:click="validForm()" style="position: absolute; bottom: 10%;">Valider</button>
         </p>
 
     </div>
@@ -39,6 +41,8 @@
 </template>
 
 <script>
+import Game from '../models/Game'
+
 export default {
   name: 'PlayerForm',
   props: {
@@ -83,9 +87,23 @@ export default {
             console.table(this.playerList)
         }, 
         validForm: function(){
-            //let gm = new Game();
-            //this.$parent.gameObj = gm; 
-        }
+            let gm = new Game();
+            for(let i = 0; i < this.playerList.length; i++){
+              gm.addPlayer(this.playerList[i])
+            }
+            this.$parent.$parent.gameObj = gm; 
+            this.$parent.$parent.formDoned = true;
+            console.table(gm.Users)
+        },
+        // loadData: function(){
+        //   let tab = []
+        //   if(this.$parent.$parent.gameObj.Users != null){
+        //     for(let i = 0; i < this.$parent.$parent.gameObj.Users.length; i++){
+        //       tab.push(this.$parent.$parent.gameObj.Users.name)
+        //     }
+        //   }
+        //   return tab;
+  // },
   },
   directives: {
   focus: {
@@ -117,7 +135,7 @@ a {
 .playerForm{
   position: absolute;
   height: 70%;
-  width: 80%;
+  width: 40%;
 
 }
 </style>
