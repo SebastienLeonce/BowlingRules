@@ -1,4 +1,4 @@
-import ObjScore from './Game';
+import ObjScore from './Score';
 
 export default class User {
     constructor(nom) {
@@ -45,6 +45,11 @@ export default class User {
 
     getScoreTotal() {
         let n = this.tourCourant - 1;
+        return this.score[n].getScoreTotal();
+    }
+
+    getScoreTour(tour) {
+        let n = tour - 1;
         return this.score[n].getScoreTotal();
     }
 

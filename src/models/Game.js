@@ -8,4 +8,11 @@ export default class Game {
     addPlayer(Username) {
         this.Users.push(new ObjUser(Username));
     }
+
+    tourSuivant() {
+        this.tourCourant++;
+        for (User in this.Users) {
+            User.tourCourant = this.tourCourant;
+        }
+    }
 }
