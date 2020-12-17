@@ -3,7 +3,7 @@ import ObjUser from './User';
 export default class Game {
     constructor () {
         this.Users = [];
-        this.tourCourant = 0;
+        this.tourCourant = 1;
     }
 
     addPlayer(Username) {
@@ -12,8 +12,8 @@ export default class Game {
 
     tourSuivant() {
         this.tourCourant++;
-        for (let User in this.Users) {
-            User.tourCourant = this.tourCourant;
+        for (let i = 0; i < this.Users.length; i++) {
+            this.Users[i].tourCourant = this.tourCourant;
         }
     }
 }
