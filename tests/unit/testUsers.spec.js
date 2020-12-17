@@ -52,6 +52,24 @@ describe('models/User.js', () => {
     })
 
     it('testScore', () => {
-        //let User1 = new User("Jacques");
+        let User1 = new User("Jacques");
+        User1.ajouterScore1(5);
+        User1.ajouterScore2(3);
+        expect(User1.getScoreTour(1)).to.equal(8);
+
+        User1 = new User("Jacques");
+        User1.ajouterScore1(10);
+        User1.tourCourant = 2;
+        User1.ajouterScore1(3);
+        User1.ajouterScore2(5);
+        expect(User1.getScoreTour(2)).to.equal(16);
+
+        User1 = new User("Jacques");
+        User1.ajouterScore1(5);
+        User1.ajouterScore2(5);
+        User1.tourCourant = 2;
+        User1.ajouterScore1(3);
+        User1.ajouterScore2(5);
+        expect(User1.getScoreTour(2)).to.equal(11);
     })
 })
