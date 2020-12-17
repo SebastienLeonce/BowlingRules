@@ -52,6 +52,6 @@ describe('models/User.js', () => {
     })
 
     it('testScore', () => {
-        let User1 = new User("Jacques");
+        //let User1 = new User("Jacques");
     })
 })
