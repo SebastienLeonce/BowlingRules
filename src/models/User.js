@@ -26,7 +26,7 @@ export default class User {
     ajouterScore2(score2) {
         let n = this.tourCourant - 1;
 
-        this.score[n].updateSecondLancer(score1);
+        this.score[n].updateSecondLancer(score2);
 
         if (this.score[n].isSpare()) {
             this.score[n + 1].setPremierLanceDouble();
