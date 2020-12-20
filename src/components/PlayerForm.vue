@@ -1,8 +1,8 @@
 <template>
-  <div class="playerForm uk-card uk-card-default uk-position-center uk-padding">
-    <div id="app">
-      <p class="uk-heading-medium">BOWLING</p>
+  <div class="playerForm uk-card uk-card-hover uk-box-shadow-xlarge uk-padding uk-animation-scale-down">
+    <p class="uk-heading-medium">BOWLING</p>
       <br>
+    <div id="app" style="height: 61.24%;" class="uk-overflow-auto">
          <p v-if="errors.length">
             <strong>Please correct the following error(s):</strong>
             <ul>
@@ -10,8 +10,8 @@
             </ul>
         </p>
         <div v-if="playerList.length">
-            <div v-for="player in playerList" v-bind:key="player">
-                <p class="uk-inline" style="text-align: left; width: 70%;">{{ player }}</p>
+            <div v-for="player in playerList" v-bind:key="player" class="uk-overflow-auto">
+                <p class="uk-inline uk-animation-shake" style="text-align: left; width: 70%;">{{ player }}</p>
                 <button type="button" uk-close v-on:click="supprPlayer(player)"></button>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     autocomplete="off"
                     placeholder="Name..."
                     >
-                    <span class="uk-search-input uk-heading-small" v-on:click="checkForm()">+</span>
+                    <span v-on:click="checkForm()" uk-icon="plus-circle"></span>
                 </div>
             </div>
         </div>
@@ -65,6 +65,7 @@ export default {
           console.table(this.playerList)
             if (this.name) {
                 this.name = ""
+                this.errors.pop()
                 return true;
             }
 
@@ -72,6 +73,7 @@ export default {
 
             if (!this.name) {
               this.errors.push('Name required.');
+              this.supprPlayer("")
             }
 
             e.preventDefault();
@@ -136,6 +138,8 @@ a {
   position: absolute;
   height: 70%;
   width: 40%;
+  top: 15%;
+  left: 30%;
 
 }
 </style>

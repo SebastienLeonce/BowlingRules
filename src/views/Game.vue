@@ -1,11 +1,17 @@
 <template>
-  <div class="game">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/rules">Règles</router-link>
-      <PlayerForm v-if="$parent.formDoned === false"/>
-      <PlayerBoard v-if="$parent.formDoned === true" style="position: absolute; width: 30%; left: 2%;"/>
-      <ScoreBoard v-if="$parent.formDoned === true" style="position: absolute; width: 60%; height: 50%; left: 34%;"/>
-      <ScoreMaker v-if="$parent.formDoned === true" style="position: absolute; width: 60%; top: 60%; left: 34%;"/>
+  <div class="game uk-card uk-card-default uk-box-shadow-xlarge uk-position-center uk-padding uk-animation-fade" style="position:absolute; height: 95%; width: 95%;">
+      <router-link class="uk-position-top-left" to="/" uk-icon="icon: arrow-left; ratio:1"></router-link> 
+      <router-link class="uk-position-top-right uk-padding-right-small uk-padding-top-remove" to="/rules" style="color: black;font-size: 10pt;line-height: 2pt;font-size: 8pt;"><span>REGLES </span><span uk-icon="icon: question; ratio:0.7"></span></router-link>
+      <p class="uk-position-top-center uk-margin-remove uk-padding-remove" style="font-size: 8pt;">BOWLING</p>
+      <PlayerForm v-if="$parent.formDoned === false" class="uk-animation-scale-down"/>
+      <PlayerBoard v-if="$parent.formDoned === true" style="position: absolute; height: 90%; width: 20%; left: 2%;"/>
+      <ScoreBoard v-if="$parent.formDoned === true" style="position: absolute; width: 74.2%; height: 50%; left: 24%;"/>
+      <ScoreMaker v-if="$parent.formDoned === true" style="position: absolute; width: 74.2%; top: 57.5%; left: 24%;"/>
+      <!-- <div id=alert-strike uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <h3>Strike</h3>
+          <p>Félicitation. Continuez !</p>
+      </div> -->
   </div>
 </template>
 
@@ -24,6 +30,7 @@ export default {
   },
   data: function(){
     return {
+      currentPlayer: this.$parent.gameObj.Users[0].nom
     }
   }
 }

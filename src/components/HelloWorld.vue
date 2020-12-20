@@ -1,9 +1,11 @@
 <template>
-  <div class="hello uk-card uk-card-default uk-position-center">
-    <img class="picture" alt="Vue logo" src="../assets/bowling.png">
-    <h1 class="uk-text-center">BOOLING APP</h1>
-    <router-link to="/game" class="uk-button uk-button-default">JOUER</router-link>
-  </div>
+  <div class="hello uk-card uk-card-hover uk-animation-kenburns uk-padding-large">
+    <p class="uk-heading-medium uk-text-center uk-animation-shake">BOWLING</p>
+    <div class="uk-position-bottom-center uk-margin-large" >
+      <router-link to="/game" class="uk-button uk-button-default uk-animation-shake" style="color: black;">JOUER</router-link>
+      <p style="font-size: 8pt;" uk-tooltip="title: @claireBauchu<br> @alexisdacosta<br> @zpaul91<br>@SebastienLeonce; pos: bottom">Qualité Logicielle<br>APP4 Informatique<br>Polytech Paris-Saclay ©</p>
+    </div>
+ </div>
 </template>
 
 <script>
@@ -40,11 +42,13 @@ a {
 .hello{
   position: absolute;
   height: 70%;
-  width: 80%;
-
+  width: 40%;
+  top: 15%;
+  left: 30%;
 }
 .picture{
-  height: 40%;
-  width: 30%;
+  margin: 0%;
+  height: 100%;
+  width: 100%;
 }
 </style>

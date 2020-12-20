@@ -11,7 +11,9 @@ export default {
   data: function(){
       return{
           gameObj: "", //TODO Ajouter l'objet Game,
-          formDoned: false
+          formDoned: false,
+          i: 0,
+          j: 0,
       }   
   },
   mounted: function(){
@@ -21,6 +23,7 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
