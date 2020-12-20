@@ -70,6 +70,16 @@ export default {
                             this.score2 = ""
                             this.score1 = ""
                             // UIkit.alert("alert-strike");
+
+                            if (this.$parent.$parent.i == this.playerList.length){
+                                this.$parent.$parent.i = 0;
+                                this.$parent.$parent.j = 0;
+                                this.$parent.$parent.gameObj.tourSuivant();
+                                for(let child in this.$parent.$childrens){
+                                    child.$forceUpdate()
+                                    Vue.forceUpdate()
+                                }
+                            }
                         }
                         else{
                             this.currentPlayer().ajouterScore1(parseInt(this.score1))

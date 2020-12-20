@@ -135,6 +135,7 @@ a {
   color: #42b983;
 }
 .playerForm{
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   height: 70%;
   width: 40%;
