@@ -37,10 +37,12 @@ export default {
     },
     methods: {
         currentPlayer(){
-            return this.playerList[this.$parent.$parent.i]
+            // return this.playerList[this.$parent.$parent.i]
+            return this.$parent.$parent.gameObj.joueurCourant;
         },
         currentLancer(){
-            return this.$parent.$parent.j
+            // return this.$parent.$parent.j
+            return 
         },
         addScore(){
             console.log(this.playerList.length)
