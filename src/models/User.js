@@ -32,6 +32,7 @@ export default class User {
             if (this.score[n].secondLanceDouble) {
                 this.score[n + 1].coeffPremierLance++;
             }
+            this.lanceCourant = 1;
         }
 
         this.lanceCourant = 2;
