@@ -25,4 +25,28 @@ describe('models/Game.js', () => {
         expect(jeux.tourCourant).to.equal(2);
         expect(jeux.Users[2].tourCourant).to.equal(2);
     })
+
+    it('NextTurnV2', () => {
+        let jeux = new Game();
+        jeux.addPlayer("Pierre");
+        jeux.addPlayer("Paul");
+        jeux.addPlayer("Jacques");
+
+        expect(jeux.tourCourant).to.equal(1);
+        expect(jeux.joueurCourant).to.equal(0);
+        jeux.joueurSuivant();
+        expect(jeux.joueurCourant).to.equal(0);
+        jeux.Users[0].ajouterScore1(6);
+        jeux.joueurSuivant();
+        expect(jeux.joueurCourant).to.equal(0);
+        jeux.Users[0].ajouterScore2(2);
+        jeux.joueurSuivant();
+        expect(jeux.joueurCourant).to.equal(1);
+        jeux.Users[1].ajouterScore1(10);
+        jeux.joueurSuivant();
+        expect(jeux.joueurCourant).to.equal(2);
+        jeux.Users[2].ajouterScore1(10);
+        jeux.joueurSuivant();
+        expect(jeux.joueurCourant).to.equal(0);
+    })    
 })
