@@ -48,5 +48,30 @@ describe('models/Game.js', () => {
         jeux.Users[2].ajouterScore1(10);
         jeux.joueurSuivant();
         expect(jeux.joueurCourant).to.equal(0);
-    })    
+    }) 
+    
+    it("FinDePartie oklm", () => {
+        let jeux = new Game();
+        jeux.addPlayer("Pierre");
+
+        for(let i = 0; i < 10; i++) {
+            jeux.Users[0].ajouterScore1(6);
+            jeux.Users[0].ajouterScore2(2);
+            jeux.joueurSuivant();
+            expect(jeux.joueurCourant).to.equal(0);
+            console.log(jeux.Users[0].getScoreTotal());
+        }
+    })
+
+    it("FinDePartie Strike", () => {
+        let jeux = new Game();
+        jeux.addPlayer("Pierre");
+
+        for(let i = 0; i < 12; i++) {
+            jeux.Users[0].ajouterScore1(10);
+            jeux.joueurSuivant();
+            expect(jeux.joueurCourant).to.equal(0);
+            console.log(jeux.Users[0].getScoreTotal());
+        }
+    })
 })
