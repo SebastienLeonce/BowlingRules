@@ -23,7 +23,8 @@
                     </thead>
                     <tbody>
                         <tr v-for="player in playerList" v-bind:key="player">
-                            <td>{{player.nom}}</td>
+                            <td v-if="playerActive(player.nom)" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
+                            <td v-if="!playerActive(player.nom)">{{player.nom}}</td>
                             <td>{{player.getScoreTourPremierLance(1)}} | {{player.getScoreTourSecondLance(1)}} </td>
                             <td>{{player.getScoreTourPremierLance(2)}} | {{player.getScoreTourSecondLance(2)}} </td>
                             <td>{{player.getScoreTourPremierLance(3)}} | {{player.getScoreTourSecondLance(3)}} </td>
@@ -61,7 +62,8 @@
             </thead>
             <tbody>
                 <tr v-for="player in playerList" v-bind:key="player">
-                    <td>{{player.nom}}</td>
+                    <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
+                    <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
                     <td>{{player.getScoreTourPremierLance(1)}} | {{player.getScoreTourSecondLance(1)}} </td>
                     <td>{{player.getScoreTourPremierLance(2)}} | {{player.getScoreTourSecondLance(2)}} </td>
                     <td>{{player.getScoreTourPremierLance(3)}} | {{player.getScoreTourSecondLance(3)}} </td>
@@ -89,6 +91,13 @@ export default {
           playerList: this.$parent.$parent.gameObj.Users
       }
     }, 
+    methods: {
+        playerActive: function(nom){
+            // alert(nom)
+            // alert(this.$parent.$parent.gameObj.Users[this.$parent.$parent.i])
+            return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.i].nom ? true : false
+        },
+    },
     mounted: function(){
         console.log(this.$parent.$parent.gameObj.Users);
     }
