@@ -4,11 +4,12 @@ export default class User {
     constructor(nom) {
         if (typeof nom !== 'string') throw new Error("Use String Type");
 
-        this.nom         = nom;
-        this.score       = [];
-        this.tourCourant = 1;
+        this.nom          = nom;
+        this.score        = [];
+        this.tourCourant  = 1;
+        this.lanceCourant = 1;
 
-        for (let i = 0; i < 11; i++) {
+        for (let i = 0; i < 13; i++) {
             this.score.push(new ObjScore())
         }
     }
@@ -32,6 +33,8 @@ export default class User {
                 this.score[n + 1].coeffPremierLance++;
             }
         }
+
+        this.lanceCourant = 2;
     }
 
     ajouterScore2(score2) {
@@ -46,6 +49,8 @@ export default class User {
             this.score[n + 1].coeffPremierLance++;
             this.score[n + 1].setPremierLanceDouble();
         }
+
+        this.lanceCourant = 1;
     }
 
     isRelance2Available() {
