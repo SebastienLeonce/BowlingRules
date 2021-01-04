@@ -40,7 +40,7 @@ export default {
         playerActive: function(nom){
             // alert(nom)
             // alert(this.$parent.$parent.gameObj.Users[this.$parent.$parent.i])
-            return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.i].nom ? true : false
+            return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.gameObj.joueurCourant].nom ? true : false
         },
         sortPlayer: function(){
             let list = this.$parent.$parent.gameObj.Users

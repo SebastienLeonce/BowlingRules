@@ -38,45 +38,32 @@ export default {
     methods: {
         currentPlayer(){
             // return this.playerList[this.$parent.$parent.i]
-            return this.$parent.$parent.gameObj.joueurCourant;
+            return this.playerList[this.$parent.$parent.gameObj.joueurCourant];
         },
         currentLancer(){
             // return this.$parent.$parent.j
-            return 
+            return this.currentPlayer().lanceCourant;
         },
         addScore(){
             console.log(this.playerList.length)
             console.table(this.playerList)
 
-            if (parseInt(this.score1) < 0 && parseInt(this.score2) > 10){
-                alert("Erreur lors de la saisi du score")
-                this.score1 = 0 
-                document.getElementById("score1").value = ""
-                this.score2 = 0
-                document.getElementById("score2").value = ""
-                return false;
-            }
-            if(this.$parent.$parent.i < this.playerList.length){
-                //TODO Vérifier le type de l'input
-                if (this.currentLancer() == 0){
+            console.log("Current Lancer : " + this.currentLancer())
+            if(this.$parent.$parent.gameObj.joueurCourant < this.playerList.length){
+                if (this.currentLancer() == 1){
                     try {
                         if(this.score1 == 10){
                             this.currentPlayer().ajouterScore1(parseInt(this.score1))
-                            this.currentPlayer().ajouterScore2(parseInt(0))
-                            this.$parent.$parent.i++
-                            this.$parent.currentPlayer = this.currentPlayer()
-                            this.$parent.$parent.j = 0
+                            this.$parent.$parent.gameObj.joueurSuivant();
+                            // this.currentPlayer().ajouterScore2(parseInt(0));
+                            // this.$parent.$parent.gameObj.joueurSuivant();
                             this.score2Display = false
                             this.score1Display = true
                             this.error = "Strike"
                             this.score2 = ""
                             this.score1 = ""
-                            // UIkit.alert("alert-strike");
 
-                            if (this.$parent.$parent.i == this.playerList.length){
-                                this.$parent.$parent.i = 0;
-                                this.$parent.$parent.j = 0;
-                                this.$parent.$parent.gameObj.tourSuivant();
+                            if (this.$parent.$parent.gameObj.joueurCourant == this.playerList.length){
                                 for(let child in this.$parent.$childrens){
                                     child.$forceUpdate()
                                     Vue.forceUpdate()
@@ -85,7 +72,7 @@ export default {
                         }
                         else{
                             this.currentPlayer().ajouterScore1(parseInt(this.score1))
-                            this.$parent.$parent.j++;
+                            this.$parent.$parent.gameObj.joueurSuivant();
                             this.score2Display = true
                             this.score1Display = false
                             this.error = ""
@@ -94,7 +81,7 @@ export default {
                         this.error = e
                     }
                 }
-                else if (this.currentLancer() == 1){   
+                else if (this.currentLancer() == 2){   
                     this.error = ""
                     if(this.score2 > 10-this.score1){
                         this.error = "Trop de quilles touchés. Recommencez"
@@ -102,9 +89,7 @@ export default {
 
                     try {
                         this.currentPlayer().ajouterScore2(parseInt(this.score2))
-                        this.$parent.$parent.i++
-                        this.$parent.currentPlayer = this.currentPlayer()
-                        this.$parent.$parent.j = 0
+                        this.$parent.$parent.gameObj.joueurSuivant();
                         this.score2Display = false
                         this.score1Display = true
                         this.error = ""
@@ -114,15 +99,12 @@ export default {
                         this.error = e
                     }   
 
-                    if (this.$parent.$parent.i == this.playerList.length){
-                    this.$parent.$parent.i = 0;
-                    this.$parent.$parent.j = 0;
-                    this.$parent.$parent.gameObj.tourSuivant();
-                    for(let child in this.$parent.$childrens){
-                         child.$forceUpdate()
-                          Vue.forceUpdate()
+                    if (this.$parent.$parent.gameObj.joueurCourant == this.playerList.length){
+                        for(let child in this.$parent.$childrens){
+                            child.$forceUpdate()
+                            Vue.forceUpdate()
+                        }
                     }
-                }
                 }
                  
                 
