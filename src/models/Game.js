@@ -22,11 +22,11 @@ export default class Game {
     joueurSuivant() {
         if (this.tourCourant < 11) {
             if (this.joueurCourant < this.Users.length - 1) {
-                if (!this.Users[this.joueurCourant].isRelance2Available() || this.Users[this.joueurCourant].getScoreTourSecondLance(this.tourCourant) != 0) {
+                if (this.Users[this.joueurCourant].tourFinis) {
                     this.joueurCourant++;
                 }
             } else {
-                if (!this.Users[this.joueurCourant].isRelance2Available()  || this.Users[this.joueurCourant].getScoreTourSecondLance(this.tourCourant) != 0) {
+                if (this.Users[this.joueurCourant].tourFinis) {
                     this.joueurCourant = 0;
                     this.tourCourant++;
                     for (let i = 0; i < this.Users.length; i++) {

@@ -8,6 +8,7 @@ export default class User {
         this.score        = [];
         this.tourCourant  = 1;
         this.lanceCourant = 1;
+        this.tourFinis     = false;
 
         for (let i = 0; i < 13; i++) {
             this.score.push(new ObjScore())
@@ -16,6 +17,7 @@ export default class User {
 
     ajouterScore1(score1) {
         let n = this.tourCourant - 1;
+        this.tourFinis = false;
 
         if (!Number.isInteger(score1) || score1 < 0) throw new Error("Use Int Type")
         if (score1 > 10) throw new Error("> 10")
@@ -33,6 +35,7 @@ export default class User {
                 this.score[n + 1].coeffPremierLance++;
             }
             this.lanceCourant = 1;
+            this.tourFinis = true;
         }
 
         this.lanceCourant = 2;
@@ -52,6 +55,7 @@ export default class User {
         }
 
         this.lanceCourant = 1;
+        this.tourFinis = true;
     }
 
     isRelance2Available() {
