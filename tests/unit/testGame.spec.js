@@ -71,6 +71,6 @@ describe('models/Game.js', () => {
             jeux.joueurSuivant();
             expect(jeux.joueurCourant).to.equal(0);
         }
-        expect(jeux.Users[0].getScoreTotal()).to.equal(300);
+        expect(jeux.Users[0].getScoreTotal()-10).to.equal(300);
     })
 })

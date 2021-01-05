@@ -31,7 +31,7 @@ export default class User {
         if (n > 0 && (this.score[n-1].isSpare() || this.score[n-1].isStrike())) {
             this.score[n-1].updatePremierLancer(this.score[n-1].getScorePremierLance() + score1);
          }
-        if (n > 1 && this.score[n-2].isStrike() && this.score[n-1].isStrike()) {
+        if (n > 1 && this.score[n-2].isStrike() && (this.score[n-1].isStrike() || this.score[n].strikeBonus)) {
              this.score[n-2].updatePremierLancer(this.score[n-2].getScorePremierLance() + score1);
          }
 
