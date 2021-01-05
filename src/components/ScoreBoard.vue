@@ -1,7 +1,7 @@
 <template>
     <div class="uk-card uk-card-hover uk-box-shadow-small uk-padding uk-overflow-auto uk-animation-scale-up" href="#modal-center" uk-toggle>
         <div id="modal-center" class="uk-flex-top" uk-modal> 
-            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 60%; width: 70%;">
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 80%; width: 90%;">
                 <p class="uk-margin uk-padding uk-position-left">TABLEAU DES SCORES</p>
                 <br>
                 <table class="uk-table uk-table-responsive uk-table-divider">
@@ -38,11 +38,11 @@
                             <th id=10 v-if="$parent.$parent.gameObj.tourCourant == 10" style="color: red;">10</th>
                             <th id=10 v-if="$parent.$parent.gameObj.tourCourant != 10">10</th>
 
-                            <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
+                            <!-- <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
                             <th id=11 v-if="$parent.$parent.gameObj.tourCourant != 11">11</th>
 
                             <th id=12 v-if="$parent.$parent.gameObj.tourCourant == 12" style="color: red;">12</th>
-                            <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th>
+                            <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th> -->
 
                             <th id=Score>Score</th>
                         </tr>
@@ -61,8 +61,8 @@
                             <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
                             <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
                             <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
-                            <td>{{player.getScoreTourPremierLance(11)}}</td>
-                            <td>{{player.getScoreTourPremierLance(12)}}</td>
+                            <!-- <td>{{player.getScoreTourPremierLance(11)}}</td>
+                            <td>{{player.getScoreTourPremierLance(12)}}</td> -->
                             <td>{{player.getScoreTotal()}}</td>
                         </tr>
                     </tbody>
@@ -105,11 +105,11 @@
                     <th id=10 v-if="$parent.$parent.gameObj.tourCourant == 10" style="color: red;">10</th>
                     <th id=10 v-if="$parent.$parent.gameObj.tourCourant != 10">10</th>
 
-                    <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
+                    <!-- <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
                     <th id=11 v-if="$parent.$parent.gameObj.tourCourant != 11">11</th>
 
                     <th id=12 v-if="$parent.$parent.gameObj.tourCourant == 12" style="color: red;">12</th>
-                    <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th>
+                    <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th> -->
 
                     <th id=Score>Score</th>
                 </tr>
@@ -128,8 +128,8 @@
                     <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
                     <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
                     <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
-                    <td>{{player.getScoreTourPremierLance(11)}}</td>
-                    <td>{{player.getScoreTourPremierLance(12)}}</td>
+                    <!-- <td>{{player.getScoreTourPremierLance(11)}}</td>
+                    <td>{{player.getScoreTourPremierLance(12)}}</td> -->
                     <td>{{player.getScoreTotal()}}</td>
                 </tr>
             </tbody>

@@ -42,7 +42,7 @@
 
 <script>
 import Game from '../models/Game'
-
+import UIKit from 'uikit'
 export default {
   name: 'PlayerForm',
   props: {
@@ -89,13 +89,20 @@ export default {
             console.table(this.playerList)
         }, 
         validForm: function(){
-            let gm = new Game();
-            for(let i = 0; i < this.playerList.length; i++){
-              gm.addPlayer(this.playerList[i])
+            if(this.playerList.length == 0){
+              UIKit.notification({message : "Veuillez jouez avec au moins 2 joueurs", status: 'danger', timeout: 2000});
             }
-            this.$parent.$parent.gameObj = gm; 
-            this.$parent.$parent.formDoned = true;
-            console.table(gm.Users)
+            else{
+              let gm = new Game();
+              for(let i = 0; i < this.playerList.length; i++){
+                gm.addPlayer(this.playerList[i])
+              }
+              this.$parent.$parent.gameObj = gm; 
+              this.$parent.$parent.formDoned = true;
+              UIKit.notification({message : "👋🏻 Bienvenue dans cette nouvelle partie", timeout: 2000});
+              console.table(gm.Users)
+            }
+            
         },
         // loadData: function(){
         //   let tab = []
