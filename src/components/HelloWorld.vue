@@ -1,5 +1,5 @@
 <template>
-  <div class="hello uk-card uk-card-hover uk-animation-kenburns uk-padding-large">
+  <div class="hello uk-card uk-card-default uk-animation-kenburns uk-padding-large">
     <p class="uk-heading-medium uk-text-center uk-animation-shake">BOWLING</p>
     <div class="uk-position-bottom-center uk-margin-large" >
       <router-link to="/game" class="uk-button uk-button-default uk-animation-shake" style="color: black;">JOUER</router-link>
@@ -45,6 +45,7 @@ a {
   width: 40%;
   top: 15%;
   left: 30%;
+  background-color: rgba(255, 255, 255, 0.055);
 }
 .picture{
   margin: 0%;

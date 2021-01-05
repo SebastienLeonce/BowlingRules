@@ -32,27 +32,35 @@ export default {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   color: #2c3e50;
-    /* background-image: url("../assets/bowling.gif"); */
-    background-size: 100%;
+  /* background-image: url("../assets/wp2.png"); */
+  background-size: 100% 90%;
 }
 .back{
   position: absolute;
   top: 0%;
-  left: 25%;
+  left: 10%;
   height: 100%;
-  width: 50%;
+  width: 90%;
   /* clip-path: polygon(100% 0, 0% 100%, 100% 100%); */
-  clip-path: polygon(84.1% 0, 17% 100%, 84.1% 100%);
-  background-image: src("../assets/dribbble.svg");
-  background-color: rgb(184, 184, 184);
+  clip-path: polygon(100% 0%, 69% 0%, 28% 100%, 28% 100%, 81% 100%, 45% 100%, 40% 100%, 84% 100%, 100% 100%, 100% 92%, 100% 64%, 100% 35%, 100% 15%, 100% 25%);
+  /* background-image: url("../assets/dribbble.webp"); */
+
+  background-image: url("../assets/wp.jpg");
+  background-size: 100% 100%;
+  /* background-color: rgb(184, 184, 184); */
 }
 .back2{
   position: absolute;
   top: 0%;
-  left: 67%;
+  left: 10%;
   height: 100%;
-  width: 32.99%;
-  background-image: src("../assets/dribbble.svg");
-  background-color: rgb(184, 184, 184);
+  width: 90%;
+  /* clip-path: polygon(100% 0, 0% 100%, 100% 100%); */
+  clip-path: polygon(0% 0%, 69% 0%, 28% 100%, 28% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 78%, 0% 27%);
+  /* background-image: url("../assets/dribbble.webp"); */
+
+  background-image: url("../assets/wp2.png");
+  background-size: 100% 100%;
+  /* background-color: rgb(184, 184, 184); */
 }
 </style>
