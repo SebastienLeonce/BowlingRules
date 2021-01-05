@@ -12,13 +12,26 @@
             <input id=score2 v-model="score2" class="uk-input uk-form" style="width: 30%;" type="text" placeholder="" autocomplete="off">
         </div>
         <button v-if="(score2Display === true || score1Display === true)" class="uk-button uk-button-default" v-on:click="addScore()">Ajouter Score</button>
-        <button v-if="score1Display === true" class="uk-button uk-button-default" v-on:click="addScore(10)">Strike</button>
+        <button v-if="score1Display === true" class="uk-button uk-button-default" v-on:click="addScore(10)" uk-toggle="target: #animation">Strike</button>
+        <div class="uk-animation-fade">
+            <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 50%; background-color: rgb(96,109,174);"></div>
+            <img src="../assets/bowling-quille.gif" alt="bowling-quille" style="position: absolute; right: 10%; top: 0%; max-height: 100%; width: auto;">
+        </div>
+        <!-- <div v-if="strike === true" class="uk-card uk-card-default uk-animation-fade">
+            <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 50%; background-color: rgb(241,172,20);"></div>
+            <img src="../assets/bowling-strike.gif" alt="bowling-quille" style="position: absolute; right: 13%; top: 0%; max-height: 100%; width: auto;">  
+        </div> -->
+        <div id="animation" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body" style="position: absolute; height: 95%; width: 95%; top: 2.5%; left: 2.5%;"> 
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+            <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 100%; background-color: rgb(241,172,20);"></div>
+            <img src="../assets/bowling-strike.gif" alt="bowling-quille" style="position: absolute; right: 20%; height: 95%; width: auto;">  
+          </div>
+        </div>
     </div>
 </template>
 
 <script>
-// import UIkit from 'uikit';
-// import Vue from 'vue'
 
 export default {
     name: 'ScoreMaker',
@@ -27,23 +40,26 @@ export default {
     data: function(){
       return{
           playerList: this.$parent.$parent.gameObj.Users,
-          i: 0,
-          j: 0,
           score1: "",
           score2 : "",
           score2Display: this.$parent.$parent.j == 1 ? true : false, 
           score1Display: this.$parent.$parent.j == 0 ? true : false,
-          error: ""
+          error: "",
+          strike: false
       }
     },
     methods: {
         currentPlayer(){
-            // return this.playerList[this.$parent.$parent.i]
             return this.playerList[this.$parent.$parent.gameObj.joueurCourant];
         },
         currentLancer(){
-            // return this.$parent.$parent.j
             return this.currentPlayer().lanceCourant;
+        },
+        closeStrike(){
+            this.$parent.strike = false; 
+            this.error = ""
+            this.$forceupdate();
+            // this.strike = true;
         },
         addScore(score){
             console.log(this.playerList.length)
@@ -65,6 +81,8 @@ export default {
                     this.error = "Strike"
                     this.score2 = ""
                     this.score1 = ""
+                    this.$parent.strike = true
+                    setTimeout(this.closeStrike, 2000)
                 }
                 } catch (e) {
                     this.error = e
@@ -127,16 +145,7 @@ export default {
                     } catch (e) {
                         this.error = e
                     }   
-
-                    // if (this.$parent.$parent.gameObj.joueurCourant == this.playerList.length){
-                    //     for(let child in this.$parent.$childrens){
-                    //         child.$forceUpdate()
-                    //         Vue.forceUpdate()
-                    //     }
-                    // }
                 }
-                 
-                
             }
         }
     }
