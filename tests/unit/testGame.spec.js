@@ -59,7 +59,6 @@ describe('models/Game.js', () => {
             jeux.Users[0].ajouterScore2(2);
             jeux.joueurSuivant();
             expect(jeux.joueurCourant).to.equal(0);
-            console.log(jeux.Users[0].getScoreTotal());
         }
     })
 
@@ -71,7 +70,6 @@ describe('models/Game.js', () => {
             jeux.Users[0].ajouterScore1(10);
             jeux.joueurSuivant();
             expect(jeux.joueurCourant).to.equal(0);
-            console.log(jeux.Users[0].getScoreTotal());
         }
     })
 })
