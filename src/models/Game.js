@@ -34,10 +34,11 @@ export default class Game {
                     }
                 }
             }
+        ////////////////////////////////////////////////
         } else if (this.tourCourant < 13) {
             let flag = false;
 
-            for (let i = this.joueurCourant+1; i < this.Users.length; i++) {
+            for (let i = this.joueurCourant; i < this.Users.length; i++) {
                 if (this.blackList.includes(i)) continue;
                 let usr = this.Users[i];
                 switch (this.tourCourant) {
@@ -49,7 +50,7 @@ export default class Game {
                         }
                         break;
                     case 12:
-                        if (usr.score[9].isStrike() && usr.score[10].isStrike()) {
+                        if (usr.score[9].isStrike() && usr.score[10].strikeBonus) {
                             this.joueurCourant = i;
                             this.blackList.push(i);
                             flag = true;
@@ -60,30 +61,6 @@ export default class Game {
             }
 
             if (!flag) {
-                for (let i = 0; i < this.joueurCourant; i++) {
-                    if (this.blackList.includes(i)) continue;
-                    let usr = this.Users[i];
-                    switch (this.tourCourant) {
-                        case 11:
-                            if (usr.score[9].isStrike() || usr.score[9].isSpare()) {
-                                this.joueurCourant = i;
-                                this.blackList.push(i);
-                                flag = true;
-                            }
-                            break;
-                        case 12:
-                            if (usr.score[9].isStrike() && usr.score[10].isStrike()) {
-                                this.joueurCourant = i;
-                                this.blackList.push(i);
-                                flag = true;
-                            }
-                            break;
-                    }
-                    if (flag) break;
-                }
-            }
-
-            if (!flag) {
                 this.joueurCourant = 0;
                 this.tourCourant++;
                 this.blackList = [];
@@ -91,39 +68,6 @@ export default class Game {
                     this.Users[i].tourCourant = this.tourCourant;
                 }
             }
-
-
-
-
-           /*if (this.joueurCourant < this.Users.length - 1) {
-                let usr = this.Users[this.joueurCourant];
-                if (this.blackList.includes(usr.getNom())) {
-                    this.joueurCourant++;
-                } else {
-                    switch (this.tourCourant) {
-                        case 11:
-                            if (!usr.score[10].isStrike() || usr.score[10].isSpare()) {
-                                this.blackList.push(usr.getNom());
-                                
-                            }
-                            this.joueurCourant++;
-                            break;
-                        case 12:
-                            if (!usr.score[11].isStrike()) {
-                                this.blackList.push(usr.getNom());
-                                
-                            }
-                            this.joueurCourant++;
-                            break;
-                    }
-                }
-            } else {
-                this.joueurCourant = 0;
-                this.tourCourant++;
-                for (let i = 0; i < this.Users.length; i++) {
-                    this.Users[i].tourCourant = this.tourCourant;
-                }
-            }*/
         } else {
             return -1;
         }
