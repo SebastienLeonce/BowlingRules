@@ -1,6 +1,6 @@
 <template>
     <div class="uk-card uk-card-hover uk-box-shadow-small uk-padding uk-overflow-auto uk-animation-scale-up" style="text-align: left;">
-        <p>SCORES<br><span style="font-size: 10pt;"> <span>COURANT : {{$parent.$parent.gameObj.tourCourant}}</span> | 
+        <p>SCORES<br><span v-if="(score2Display === true || score1Display === true)" style="font-size: 10pt;"> <span>COURANT : {{$parent.$parent.gameObj.tourCourant}}</span> | 
            JOUEUR COURANT : {{currentPlayer().nom}}</span> <br> {{error}}
         </p>
         <label v-if="score1Display === true" class="uk-form-label" for="form-horizontal-text">1er lancer</label>
@@ -56,16 +56,17 @@
             <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 50%; background-color: rgb(93,108,180);"></div>
             <img src="../assets/bowling-quille.gif" alt="bowling-quille" style="position: absolute; right: 10%; top: 0%; max-height: 100%; width: auto;">
         </div>
-        <!-- <div v-if="strike === true" class="uk-card uk-card-default uk-animation-fade">
+        <div v-if="$parent.strike === true" class="uk-card uk-card-default uk-animation-fade">
             <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 50%; background-color: rgb(241,172,20);"></div>
-            <img src="../assets/bowling-strike.gif" alt="bowling-quille" style="position: absolute; right: 13%; top: 0%; max-height: 100%; width: auto;">  
-        </div> -->
+            <img src="../assets/bowling-strike.gif" alt="bowling-quille" class="uk-position-center" style="position: absolute; right: 13%; top: 0%; max-height: 100%; width: auto;">  
+        </div>
         <div id="animation" uk-modal>
           <div class="uk-modal-dialog uk-modal-body uk-animation-scale-up" style="position: absolute; height: 95%; width: 95%; top: 2.5%; left: 2.5%;"> 
             <div style="position: absolute; top:0%; right: 0%; height: 100%; width: 100%; background-color: rgb(241,172,20);"></div>
-            <img src="../assets/bowling-strike.gif" alt="bowling-quille" style="position: absolute; right: 20%; height: 95%; width: auto;">  
+            <img class="uk-position-center" src="../assets/bowling-strike.gif" alt="bowling-quille" style="position: absolute; right: 20%; height: 95%; width: auto;">  
           </div>
         </div>
+        <div v-if="(score2Display === false && score1Display === false)">Fin de partie</div>
     </div>
 </template>
 
