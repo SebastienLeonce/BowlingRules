@@ -90,7 +90,7 @@ export default {
         }, 
         validForm: function(){
             if(this.playerList.length == 0){
-              UIKit.notification({message : "Veuillez jouez avec au moins 2 joueurs", status: 'danger', timeout: 2000});
+              UIKit.notification({message : "Veuillez jouez avec au moins 1 joueurs", status: 'danger', timeout: 2000});
             }
             else{
               let gm = new Game();
