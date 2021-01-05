@@ -18,6 +18,8 @@
                             <th id=8>8</th>
                             <th id=9>9</th>
                             <th id=10>10</th>
+                            <th id=9>11</th>
+                            <th id=10>12</th>
                             <th id=Score>Score</th>
                         </tr>
                     </thead>
@@ -35,6 +37,8 @@
                             <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
                             <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
                             <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
+                            <td>{{player.getScoreTourPremierLance(11)}} | {{player.getScoreTourSecondLance(11)}} </td>
+                            <td>{{player.getScoreTourPremierLance(12)}} | {{player.getScoreTourSecondLance(12)}}</td>
                             <td>{{player.getScoreTotal()}}</td>
                         </tr>
                     </tbody>
@@ -57,6 +61,8 @@
                     <th id=8>8</th>
                     <th id=9>9</th>
                     <th id=10>10</th>
+                    <th id=9>11</th>
+                    <th id=10>12</th>
                     <th id=Score>Score</th>
                 </tr>
             </thead>
@@ -74,6 +80,8 @@
                     <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
                     <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
                     <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
+                    <td>{{player.getScoreTourPremierLance(11)}} | {{player.getScoreTourSecondLance(11)}} </td>
+                    <td>{{player.getScoreTourPremierLance(12)}} | {{player.getScoreTourSecondLance(11)}}</td>
                     <td>{{player.getScoreTotal()}}</td>
                 </tr>
             </tbody>
@@ -95,7 +103,7 @@ export default {
         playerActive: function(nom){
             // alert(nom)
             // alert(this.$parent.$parent.gameObj.Users[this.$parent.$parent.i])
-            return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.i].nom ? true : false
+            return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.gameObj.joueurCourant].nom ? true : false
         },
     },
     mounted: function(){

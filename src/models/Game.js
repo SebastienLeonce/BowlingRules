@@ -44,14 +44,16 @@ export default class Game {
                         case 11:
                             if (!usr.score[10].isStrike() || usr.score[10].isSpare()) {
                                 this.blackList.push(usr.getNom());
-                                this.joueurCourant++;
+                                
                             }
+                            this.joueurCourant++;
                             break;
                         case 12:
                             if (!usr.score[11].isStrike()) {
                                 this.blackList.push(usr.getNom());
-                                this.joueurCourant++;
+                                
                             }
+                            this.joueurCourant++;
                             break;
                     }
                 }

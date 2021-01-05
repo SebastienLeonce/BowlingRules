@@ -37,8 +37,9 @@ export default class User {
             this.lanceCourant = 1;
             this.tourFinis = true;
         }
-
-        this.lanceCourant = 2;
+        else{
+            this.lanceCourant = 2;
+        }
     }
 
     ajouterScore2(score2) {
