@@ -4,6 +4,9 @@ export default class Score {
         this.secondLance  = 0;
         this.premierLanceDouble = false;
         this.secondLanceDouble  = false;
+        this.toAugmentFirst = [];
+        this.toAugmentSecond = [];
+        this.strikeBonus = false;
 
         this.coeffPremierLance  = 1
         this.coeffSecondLance  = 1
@@ -18,29 +21,29 @@ export default class Score {
     }
 
     isStrike() {
-        if (this.premierLance == 10) {
+        if (this.secondLance == 0 && this.premierLance != 0 && (this.premierLance%10 == 0 || this.premierLance > 10)) {
             return true;
         }
         return false;
     } 
 
     isSpare() {
-        if (!this.isStrike() && this.premierLance + this.secondLance == 10) {
+        if (!this.isStrike() && this.premierLance + this.secondLance >= 10 && this.secondLance != 0) {
             return true;
         }
         return false;
     }
 
     getScoreTotal() {
-        return this.coeffPremierLance*this.premierLance + this.coeffSecondLance*this.secondLance
+        return this.premierLance + this.secondLance
     }
 
     getScorePremierLance() {
-        return this.premierLance * (this.premierLanceDouble == true) ? 2 : 1;
+        return this.premierLance;
     }
 
     getScoreSecondLance() {
-        return this.secondLance * (this.secondLanceDouble == true) ? 2 : 1;
+        return this.secondLance;
     }
 
     setPremierLanceDouble() {
