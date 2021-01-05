@@ -9,7 +9,7 @@ describe('models/User.js', () => {
         assert.throw(function() { new User(null) }, Error, /Use String Type/);
     })
 
-    it('testStrike', () => {
+    /*it('testStrike', () => {
         let User1 = new User("Jacques");
         User1.ajouterScore1(10);
         expect(User1.score[0].isStrike()).to.equal(true);
@@ -23,9 +23,9 @@ describe('models/User.js', () => {
         expect(User1.isRelance2Available()).to.equal(true);
         expect(User1.score[1].premierLanceDouble).to.equal(false);
         expect(User1.score[1].secondLanceDouble).to.equal(false);
-    })
+    })*/
 
-    it('testSpare', () => {
+    /*it('testSpare', () => {
         let User1 = new User("Jacques");
         User1.ajouterScore1(5);
         expect(User1.isRelance2Available()).to.equal(true);
@@ -49,9 +49,9 @@ describe('models/User.js', () => {
         expect(User1.score[0].isSpare()).to.equal(true);
         expect(User1.score[1].premierLanceDouble).to.equal(true);
         expect(User1.score[1].secondLanceDouble).to.equal(false);
-    })
+    })*/
 
-    it('testScore', () => {
+    /*it('testScore', () => {
         let User1 = new User("Jacques");
         User1.ajouterScore1(5);
         User1.ajouterScore2(3);
@@ -94,7 +94,7 @@ describe('models/User.js', () => {
             User1.tourCourant = User1.tourCourant+1;
         }
         expect(User1.getScoreTotal()).to.equal(181);
-    })
+    })*/
 
     it('testValidInput', () => {
         let User1 = new User("Jacques");

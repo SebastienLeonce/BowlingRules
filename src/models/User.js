@@ -4,33 +4,48 @@ export default class User {
     constructor(nom) {
         if (typeof nom !== 'string') throw new Error("Use String Type");
 
-        this.nom         = nom;
-        this.score       = [];
-        this.tourCourant = 1;
+        this.nom          = nom;
+        this.score        = [];
+        this.tourCourant  = 1;
+        this.lanceCourant = 1;
+        this.tourFinis     = false;
 
-        for (let i = 0; i < 11; i++) {
+        for (let i = 0; i < 15; i++) {
             this.score.push(new ObjScore())
         }
     }
 
     ajouterScore1(score1) {
         let n = this.tourCourant - 1;
+        this.tourFinis = false;
 
         if (!Number.isInteger(score1) || score1 < 0) throw new Error("Use Int Type")
         if (score1 > 10) throw new Error("> 10")
 
-        this.score[n].updatePremierLancer(score1);
+        if (n < 10) {
+            this.score[n].updatePremierLancer(score1);
+        } else if (score1 == 10) {
+            this.score[n].strikeBonus = true;
+        }
+
+        if (n > 0 && (this.score[n-1].isSpare() || this.score[n-1].isStrike())) {
+            this.score[n-1].updatePremierLancer(this.score[n-1].getScorePremierLance() + score1);
+         }
+        if (n > 1 && this.score[n-2].isStrike() && (this.score[n-1].isStrike() || this.score[n].strikeBonus)) {
+             this.score[n-2].updatePremierLancer(this.score[n-2].getScorePremierLance() + score1);
+         }
+
         
         if (this.score[n].isStrike()) {
-            this.score[n].updateSecondLancer(0);
-            this.score[n + 1].setPremierLanceDouble();
-            this.score[n + 1].setSecondLanceDouble();
-            this.score[n + 1].coeffPremierLance++;
-            this.score[n + 1].coeffSecondLance++;
+            this.score[n+1].toAugmentFirst.push(n);
+            this.score[n+1].toAugmentSecond.push(n);
+            
+            this.lanceCourant = 1;
+            this.tourFinis = true;
 
-            if (this.score[n].secondLanceDouble) {
-                this.score[n + 1].coeffPremierLance++;
-            }
+
+        } else {
+            this.lanceCourant = 2;
         }
     }
 
@@ -40,12 +55,20 @@ export default class User {
         if (!Number.isInteger(score2) || score2 < 0) throw new Error("Use Int Type")
         if (this.score[n].premierLance + score2 > 10) throw new Error("> 10")
 
-        this.score[n].updateSecondLancer(score2);
+        if (n < 10) {
+            this.score[n].updateSecondLancer(score2);
+        }
+
+        if (n > 0 && this.score[n-1].isStrike()) {
+            this.score[n-1].updatePremierLancer(this.score[n-1].getScorePremierLance() + score2);
+        }
 
         if (this.score[n].isSpare()) {
-            this.score[n + 1].coeffPremierLance++;
-            this.score[n + 1].setPremierLanceDouble();
+            this.score[n+1].toAugmentFirst.push(n);
         }
+
+        this.lanceCourant = 1;
+        this.tourFinis = true;
     }
 
     isRelance2Available() {
