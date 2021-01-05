@@ -6,12 +6,7 @@
       <PlayerForm v-if="$parent.formDoned === false" class="uk-animation-scale-down"/>
       <!-- <PlayerBoard v-if="$parent.formDoned === true" style="position: absolute; height: 90%; width: 20%; left: 2%;"/> -->
       <ScoreBoard v-if="$parent.formDoned === true" style="position: absolute; width: 96.2%; height: 50%; left: 2%;"/>
-      <ScoreMaker v-if="$parent.formDoned === true" style="position: absolute; width: 96.2%; top: 57.5%; left: 2%;"/>
-      <!-- <div id=alert-strike uk-alert>
-          <a class="uk-alert-close" uk-close></a>
-          <h3>Strike</h3>
-          <p>Félicitation. Continuez !</p>
-      </div> -->
+      <ScoreMaker v-if="$parent.formDoned === true" style="position: absolute; width: 96.2%; top: 57.5%; height: 40%; left: 2%;"/>
   </div>
 </template>
 
@@ -30,7 +25,8 @@ export default {
   },
   data: function(){
     return {
-      currentPlayer: this.$parent.gameObj.Users[0].nom
+      currentPlayer: this.$parent.gameObj.Users[0].nom,
+      strike: false
     }
   }
 }
