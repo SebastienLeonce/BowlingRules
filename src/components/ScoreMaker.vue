@@ -7,6 +7,7 @@
         <div v-if="score1Display === true" class="uk-margin">
             <!-- <input id=score1 v-model="score1" class="uk-input uk-form" style="width: 30%;" type="text" placeholder="" autocomplete="off"> -->
             <div class="uk-button-group">
+                <button class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 0">0</button>
                 <button class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 1">1</button>
                 <button class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 2">2</button>
                 <button class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 3">3</button>
@@ -24,6 +25,7 @@
         <div v-if="score2Display === true" class="uk-margin">
             <!-- <input id=score2 v-model="score2" class="uk-input uk-form" style="width: 30%;" type="text" placeholder="" autocomplete="off"> -->
             <div class="uk-button-group">
+                <button v-if="10 - parseInt(value) > 0" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 0">0</button>
                 <button v-if="10 - parseInt(value) > 1" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 1">1</button>
                 <button v-if="10 - parseInt(value) > 2" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 2">2</button>
                 <button v-if="10 - parseInt(value) > 3" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 3">3</button>
@@ -35,6 +37,7 @@
                 <button v-if="10 - parseInt(value) > 9" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 9">9</button>
                 <button v-if="10 - parseInt(value) > 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 10">Spare <span style="font-size: 7pt;">10</span></button>
 
+                <button v-if="10 - parseInt(value) == 0" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 0">Spare <span style="font-size: 7pt;">0</span></button>
                 <button v-if="10 - parseInt(value) == 1" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 1">Spare <span style="font-size: 7pt;">1</span></button>
                 <button v-if="10 - parseInt(value) == 2" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 2">Spare <span style="font-size: 7pt;">2</span></button>
                 <button v-if="10 - parseInt(value) == 3" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 3">Spare <span style="font-size: 7pt;">3</span></button>
