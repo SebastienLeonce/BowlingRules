@@ -1,6 +1,6 @@
 <template>
   <div class="home uk-card uk-card-default uk-box-shadow-xlarge uk-position-center uk-animation-fade uk-padding" style="position:absolute; height: 95%; width: 95%;"> 
-    <div class="back"></div>
+    <div class="back uk-box-shadow-xlarge"></div>
     <div class="back2"></div>
     <HelloWorld/>
     <span class="uk-position-bottom-center uk-margin" style="font-size: 8pt;">
@@ -27,9 +27,7 @@ export default {
 
 <style scoped>
 .home{
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Big Shoulders Stencil Text', cursive;
   text-align: center;
   color: #2c3e50;
   /* background-image: url("../assets/wp2.png"); */
@@ -38,28 +36,28 @@ export default {
 .back{
   position: absolute;
   top: 0%;
-  left: 10%;
+  left: 0%;
   height: 100%;
-  width: 90%;
-  /* clip-path: polygon(100% 0, 0% 100%, 100% 100%); */
+  width: 100%;
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   clip-path: polygon(100% 0%, 69% 0%, 28% 100%, 28% 100%, 81% 100%, 45% 100%, 40% 100%, 84% 100%, 100% 100%, 100% 92%, 100% 64%, 100% 35%, 100% 15%, 100% 25%);
   /* background-image: url("../assets/dribbble.webp"); */
 
-  /* background-image: url("../assets/bowling.png"); */
+  /* background-image: url("../assets/bowling-mockup.jpg"); */
   background-size: 100% 100%;
-  /* background-color: rgb(168, 115, 64); */
+  background-color: rgb(93,108,180);
 }
 .back2{
   position: absolute;
   top: 0%;
-  left: 10%;
+  left: 0%;
   height: 100%;
-  width: 90%;
+  width: 100%;
   /* clip-path: polygon(100% 0, 0% 100%, 100% 100%); */
   clip-path: polygon(0% 0%, 69% 0%, 28% 100%, 28% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 78%, 0% 27%);
   /* background-image: url("../assets/dribbble.webp"); */
 
-  /* background-image: url("../assets/bowling.png"); */
+  /* background-image: url("../assets/bowling-mockup3.jpg"); */
   background-size: 100% 100%;
   /* background-color: rgb(184, 184, 184); */
 }

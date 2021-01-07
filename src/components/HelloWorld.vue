@@ -1,9 +1,9 @@
 <template>
   <div class="hello uk-card uk-card-default uk-animation-kenburns uk-padding-large">
-    <p class="uk-heading-medium uk-text-center uk-animation-shake">BOWLING</p>
+    <p class="uk-heading-medium uk-text-center uk-animation-shake uk-text-light">BOWLING</p>
     <div class="uk-position-bottom-center uk-margin-large" >
-      <router-link to="/game" class="uk-button uk-button-default uk-animation-shake" style="color: black;">JOUER</router-link>
-      <p style="font-size: 8pt;" uk-tooltip="title: @claireBauchu<br> @alexisdacosta<br> @zpaul91<br>@SebastienLeonce; pos: bottom">Qualité Logicielle<br>APP4 Informatique<br>Polytech Paris-Saclay ©</p>
+      <router-link to="/game" class="uk-light uk-button uk-button-default uk-animation-shake" style="color: white;">JOUER</router-link>
+      <p class="uk-light" style="font-size: 8pt;" uk-tooltip="title: @claireBauchu<br> @alexisdacosta<br> @zpaul91<br>@SebastienLeonce; pos: bottom">Qualité Logicielle<br>APP4 Informatique<br>Polytech Paris-Saclay ©</p>
     </div>
  </div>
 </template>
