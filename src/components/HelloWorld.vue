@@ -45,7 +45,7 @@ a {
   width: 40%;
   top: 15%;
   left: 30%;
-  background-color: rgba(255, 255, 255, 0.055);
+  background-color: rgba(255, 255, 255, 0.39);
 }
 .picture{
   margin: 0%;

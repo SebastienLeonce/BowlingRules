@@ -45,9 +45,9 @@ export default {
   clip-path: polygon(100% 0%, 69% 0%, 28% 100%, 28% 100%, 81% 100%, 45% 100%, 40% 100%, 84% 100%, 100% 100%, 100% 92%, 100% 64%, 100% 35%, 100% 15%, 100% 25%);
   /* background-image: url("../assets/dribbble.webp"); */
 
-  background-image: url("../assets/wp.jpg");
+  /* background-image: url("../assets/bowling.png"); */
   background-size: 100% 100%;
-  /* background-color: rgb(184, 184, 184); */
+  /* background-color: rgb(168, 115, 64); */
 }
 .back2{
   position: absolute;
@@ -59,7 +59,7 @@ export default {
   clip-path: polygon(0% 0%, 69% 0%, 28% 100%, 28% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 78%, 0% 27%);
   /* background-image: url("../assets/dribbble.webp"); */
 
-  background-image: url("../assets/wp2.png");
+  /* background-image: url("../assets/bowling.png"); */
   background-size: 100% 100%;
   /* background-color: rgb(184, 184, 184); */
 }
