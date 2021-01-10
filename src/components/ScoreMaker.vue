@@ -37,7 +37,8 @@
                 <button v-if="score1 != 9" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 9; scoreSelected = true">9</button>
                 <button v-if="score1 == 9" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 9; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">9</button>
                 
-                <button class="uk-button uk-button-secondary uk-padding-small" v-on:click="score1 = 10; scoreSelected = true">Strike</button>
+                <button v-if="score1 != 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score1 = 10; scoreSelected = true">Strike</button>
+                <button v-if="score1 == 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score1 = 10; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Strike</button>
                 <!-- <button class="uk-button uk-button-success uk-padding-small" v-if="!scoreSelected">Score : {{score1}}</button> -->
                 <!-- <button class="uk-button uk-button-success uk-padding-small" v-if="scoreSelected" style="color: red;">Score : {{score1}}</button> -->
 
@@ -78,17 +79,39 @@
                 <button v-if="score2 != 9 && 10 - parseInt(value) > 9" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 9; scoreSelected = true">9</button>
                 <button v-if="score2 == 9 && 10 - parseInt(value) > 9" class="uk-button uk-button-default uk-padding-small" v-on:click="score2 = 9; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">9</button>
 
-                <button v-if="10 - parseInt(value) > 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 10; scoreSelected = true">Spare <span style="font-size: 7pt;">10</span></button>
-                <button v-if="10 - parseInt(value) == 0" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 0; scoreSelected = true">Spare <span style="font-size: 7pt;">0</span></button>
-                <button v-if="10 - parseInt(value) == 1" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 1; scoreSelected = true">Spare <span style="font-size: 7pt;">1</span></button>
-                <button v-if="10 - parseInt(value) == 2" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 2; scoreSelected = true">Spare <span style="font-size: 7pt;">2</span></button>
-                <button v-if="10 - parseInt(value) == 3" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 3; scoreSelected = true">Spare <span style="font-size: 7pt;">3</span></button>
-                <button v-if="10 - parseInt(value) == 4" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 4; scoreSelected = true">Spare <span style="font-size: 7pt;">4</span></button>
-                <button v-if="10 - parseInt(value) == 5" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 5; scoreSelected = true">Spare <span style="font-size: 7pt;">5</span></button>
-                <button v-if="10 - parseInt(value) == 6" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 6; scoreSelected = true">Spare <span style="font-size: 7pt;">6</span></button>
-                <button v-if="10 - parseInt(value) == 7" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 7; scoreSelected = true">Spare <span style="font-size: 7pt;">7</span></button>
-                <button v-if="10 - parseInt(value) == 8" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 8; scoreSelected = true">Spare <span style="font-size: 7pt;">8</span></button>
-                <button v-if="10 - parseInt(value) == 9" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 9; scoreSelected = true">Spare <span style="font-size: 7pt;">9</span></button>
+                <button v-if="score2 != 10 && 10 - parseInt(value) > 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 10; scoreSelected = true">Spare <span style="font-size: 7pt;">10</span></button>
+                <button v-if="score2 == 10 && 10 - parseInt(value) > 10" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 10; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">10</span></button>
+
+                <button v-if="score2 != 0 && 10 - parseInt(value) == 0" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 0; scoreSelected = true">Spare <span style="font-size: 7pt;">0</span></button>
+                <button v-if="score2 == 0 && 10 - parseInt(value) == 0" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 0; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">0</span></button>
+
+                <button v-if="score2 != 1 && 10 - parseInt(value) == 1" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 1; scoreSelected = true">Spare <span style="font-size: 7pt;">1</span></button>
+                <button v-if="score2 == 1 && 10 - parseInt(value) == 1" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 1; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">1</span></button>
+
+                <button v-if="score2 != 2 && 10 - parseInt(value) == 2" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 2; scoreSelected = true">Spare <span style="font-size: 7pt;">2</span></button>
+                <button v-if="score2 == 2 && 10 - parseInt(value) == 2" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 2; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">2</span></button>
+
+                <button v-if="score2 != 3 && 10 - parseInt(value) == 3" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 3; scoreSelected = true">Spare <span style="font-size: 7pt;">3</span></button>
+                <button v-if="score2 == 3 && 10 - parseInt(value) == 3" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 3; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">3</span></button>
+
+                <button v-if="score2 != 4 && 10 - parseInt(value) == 4" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 4; scoreSelected = true">Spare <span style="font-size: 7pt;">4</span></button>
+                <button v-if="score2 == 4 && 10 - parseInt(value) == 4" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 4; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">4</span></button>
+
+                <button v-if="score2 != 5 && 10 - parseInt(value) == 5" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 5; scoreSelected = true">Spare <span style="font-size: 7pt;">5</span></button>
+                <button v-if="score2 == 5 && 10 - parseInt(value) == 5" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 5; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">5</span></button>
+
+                <button v-if="score2 != 6 && 10 - parseInt(value) == 6" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 6; scoreSelected = true">Spare <span style="font-size: 7pt;">6</span></button>
+                <button v-if="score2 == 6 && 10 - parseInt(value) == 6" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 6; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">6</span></button>
+
+                <button v-if="score2 != 7 && 10 - parseInt(value) == 7" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 7; scoreSelected = true">Spare <span style="font-size: 7pt;">7</span></button>
+                <button v-if="score2 == 7 && 10 - parseInt(value) == 7" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 7; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">7</span></button>
+
+                <button v-if="score2 != 8 && 10 - parseInt(value) == 8" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 8; scoreSelected = true">Spare <span style="font-size: 7pt;">8</span></button>
+                <button v-if="score2 == 8 && 10 - parseInt(value) == 8" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 8; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">8</span></button>
+
+                <button v-if="score2 != 9 && 10 - parseInt(value) == 9" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 9; scoreSelected = true">Spare <span style="font-size: 7pt;">9</span></button>
+                <button v-if="score2 == 9 && 10 - parseInt(value) == 9" class="uk-button uk-button-secondary uk-padding-small" v-on:click="score2 = 9; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">Spare <span style="font-size: 7pt;">9</span></button>
+                
                 <!-- <button class="uk-button uk-button-success uk-padding-small" v-if="!scoreSelected">Score : {{score2}}</button>
                 <button class="uk-button uk-button-success uk-padding-small" v-if="scoreSelected" style="color: red;">Score : {{score2}}</button> -->
                 <button class="uk-button uk-button-success uk-padding-small" style="color: red;">Score : {{score2}}</button>
@@ -111,6 +134,12 @@
           </div>
         </div>
         <div v-if="(score2Display === false && score1Display === false)">Fin de partie</div>
+        <div v-if="getWinner() != -1">
+            <div v-for="winner in getWinner()" v-bind:key="winner.nom">
+                <div>{{winner.nom}} gagne avec un score de {{winner.score}} points</div>
+            </div>
+            <button class="uk-light uk-button uk-button-default uk-animation-shake" style="color: black;" v-on:click="reloadPage()">RE-JOUER</button>
+        </div>
     </div>
 </template>
 
@@ -150,13 +179,33 @@ export default {
             // this.$emit('close');
             // modal.isActive();
             //UIKit.modal.alert('UIkit alert!')
-            this.$forceupdate();
+            //this.$forceupdate();
             // this.strike = true;
+        },
+        reloadPage(){
+            window.location.reload()
+        },
+        getWinner(){
+            let winner = [{nom: "", score: 0}]
+            if(this.score2Display === false && this.score1Display === false){
+                for(let i = 0; i < this.playerList.length; i++){
+                    if(this.playerList[i].getScoreTotal() > winner[0].score){
+                        winner = [];
+                        winner.push({nom: this.playerList[i].nom, score: this.playerList[i].getScoreTotal()})
+                    }
+                    else if (this.playerList[i].getScoreTotal() == winner[0].score){
+                        winner.push({nom: this.playerList[i].nom, score: this.playerList[i].getScoreTotal()})
+                    }   
+                }
+                return winner
+            }else{
+                return -1
+            }
+            
         },
         addScore(score){
             this.scoreSelected = false
-            console.log(this.playerList.length)
-            console.table(this.playerList)
+            console.log("Score Added by " + this.currentPlayer().nom + " at the " + this.$parent.$parent.gameObj.tourCourant + " tour for his " +  this.currentLancer())
 
             if(this.currentLancer() == 1 && score == 10){
                 try {
@@ -166,7 +215,7 @@ export default {
                     UIKit.notification({message : "FIN DE PARTIE", status: 'success', timeout: 1000});
                     this.score2Display = false
                     this.score1Display = false
-                    this.error = "Fin de partie"
+                    // this.error = "Fin de partie"
                 }
                 else{
                     this.score2Display = false
@@ -180,7 +229,7 @@ export default {
                     var audio = new Audio(require('../assets/strikemp4_Zfp3iNsE.mp3'));
                     audio.play();
                     setTimeout(this.closeStrike, 5000);
-                    setTimeout(function(){UIKit.notification({message : "A toi " + this.currentPlayer().nom, timeout: 1000})}, 10000);
+                    setTimeout(function(){UIKit.notification({message : "Joueur Suivant", timeout: 1000})}, 10000);
                 }
                 } catch (e) {
                     this.error = e
@@ -190,14 +239,30 @@ export default {
             else if(this.$parent.$parent.gameObj.joueurCourant < this.playerList.length){
                 if (this.currentLancer() == 1){
                     try {
-                        // if($parent.$parent.gameObj.tourCourant <= 10){
-
-                        // }
                         this.currentPlayer().ajouterScore1(parseInt(this.score1))
-                        let res = this.$parent.$parent.gameObj.joueurSuivant();
-                        UIKit.notification({message : "Encore a toi " + this.currentPlayer().nom, timeout: 1000});
+                        let res = 0;
 
-                        if(this.score1 == 10){
+                        if (this.$parent.$parent.gameObj.tourCourant >= 11){
+                            // if(this.$parent.$parent.gameObj.tourCourant == 12 && this.score1 != 10){
+                            //     this.currentPlayer().ajouterScore2(parseInt(this.score1))
+                            // }
+                            res = this.$parent.$parent.gameObj.bonusSuivant();
+                            this.score2Display = false
+                            this.score1Display = true
+                            if(this.score1 == 10){
+                                this.$parent.strike = true
+                                var modal3 = UIKit.modal('#animation');
+                                modal3.show();
+                                var audio3 = new Audio(require('../assets/strikemp4_Zfp3iNsE.mp3'));
+                                audio3.play();
+                                setTimeout(this.closeStrike, 5000);
+                                setTimeout(function(){UIKit.notification({message : "Joueur Suivant" , timeout: 1000})}, 10000);
+                            }
+                            this.score2 = 0
+                            this.score1 = 0
+                        }
+                        else if(this.score1 == 10){
+                            res = this.$parent.$parent.gameObj.joueurSuivant();
                             this.score2Display = false
                             this.score1Display = true
                             this.score2 = 0
@@ -208,9 +273,10 @@ export default {
                             var audio2 = new Audio(require('../assets/strikemp4_Zfp3iNsE.mp3'));
                             audio2.play();
                             setTimeout(this.closeStrike, 5000);
-                            setTimeout(function(){UIKit.notification({message : "A toi " + this.currentPlayer().nom, timeout: 1000})}, 10000);
+                            setTimeout(function(){UIKit.notification({message : "Joueur Suivant" , timeout: 1000})}, 10000);
                         }
                         else{
+                            res = this.$parent.$parent.gameObj.joueurSuivant();
                             this.score2Display = true
                             this.score1Display = false
                             this.error = ""
@@ -223,7 +289,7 @@ export default {
                             UIKit.notification({message : "FIN DE PARTIE", status: 'success', timeout: 1000});
                             this.score2Display = false
                             this.score1Display = false
-                            this.error = "Fin de partie"
+                            // this.error = "Fin de partie"
                         }
                     } catch (e) {
                         this.error = e
@@ -250,7 +316,7 @@ export default {
                             UIKit.notification({message : "FIN DE PARTIE", status: 'success', timeout: 2000});
                             this.score2Display = false
                             this.score1Display = false
-                            this.error = "Fin de partie"
+                            // this.error = "Fin de partie"
                         }
                     } catch (e) {
                         this.error = e
