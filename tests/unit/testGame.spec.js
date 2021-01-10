@@ -95,12 +95,17 @@ describe('models/Game.js', () => {
         let jeux = new Game();
         jeux.addPlayer("Pierre");
 
-        for(let i = 0; i < 20; i++) {
-            //console.log(jeux.tourCourant);
-            //console.log(jeux.Users[0].tourCourant);
+        for(let i = 0; i < 10; i++){
             jeux.Users[0].ajouterScore1(10);
-            
-            if (jeux.joueurSuivant() == -1) break;
+            if (jeux.joueurSuivant() == -1){
+                break;
+            }
+        }
+        for(let i = 10; i < 12; i++){
+            jeux.Users[0].ajouterScore1(10);
+            if (jeux.bonusSuivant() == -1){
+                break;
+            }
         }
         expect(jeux.Users[0].getScoreTotal()).to.equal(300);
     })
@@ -110,14 +115,150 @@ describe('models/Game.js', () => {
         jeux.addPlayer("Pierre");
         jeux.addPlayer("Paul");
 
-        for(let i = 0; i < 20; i++) {
+        for(let i = 0; i < 10; i++){
             jeux.Users[0].ajouterScore1(10);
-            if (jeux.joueurSuivant() == -1) break;
+            if (jeux.joueurSuivant() == -1){
+                break;
+            }
             jeux.Users[1].ajouterScore1(10);
-            if (jeux.joueurSuivant() == -1) break;
+            if (jeux.joueurSuivant() == -1){
+                break;
+            }
+        }
+        for(let i = 10; i < 12; i++){
+            jeux.Users[0].ajouterScore1(10);
+            if (jeux.bonusSuivant() == -1){
+                break;
+            }
+            jeux.Users[1].ajouterScore1(10);
+            if (jeux.bonusSuivant() == -1){
+                break;
+            }
         }
         expect(jeux.Users[0].getScoreTotal()).to.equal(300);
         expect(jeux.Users[1].getScoreTotal()).to.equal(300);
+    })
+
+    it("partie classique", () => {
+        let jeux = new Game();
+        jeux.addPlayer("Pierre");
+        jeux.addPlayer("Paul");
+
+        // 1er tour
+        jeux.Users[0].ajouterScore1(1);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(2);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(10);
+        jeux.joueurSuivant();
+
+        // 2ème tour 
+        jeux.Users[0].ajouterScore1(10);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(1);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(7);
+        jeux.joueurSuivant();
+
+        // 3ème tour
+        jeux.Users[0].ajouterScore1(0);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(10);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(10);
+        jeux.joueurSuivant();
+
+        // 4ème tour
+        jeux.Users[0].ajouterScore1(4);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(2);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(2);
+        jeux.joueurSuivant();
+
+        // 5ème tour
+        jeux.Users[0].ajouterScore1(0);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(10);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(10);
+        jeux.joueurSuivant();
+
+        // 6ème tour
+        jeux.Users[0].ajouterScore1(6);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(2);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(6);
+        jeux.joueurSuivant()
+        jeux.Users[1].ajouterScore2(0);
+        jeux.joueurSuivant();
+
+        // 7ème tour 
+        jeux.Users[0].ajouterScore1(0);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(10);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(10);
+        jeux.joueurSuivant();
+
+        // 8ème tour
+        jeux.Users[0].ajouterScore1(6);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(4);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant();
+        jeux.Users[1].ajouterScore2(10);
+        jeux.joueurSuivant();
+
+        // 9ème tour
+        jeux.Users[0].ajouterScore1(8);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(2);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(6);
+        jeux.joueurSuivant();
+        jeux.Users[1].ajouterScore2(2);
+        jeux.joueurSuivant();
+
+        // 10ème tour
+        jeux.Users[0].ajouterScore1(2);
+        jeux.joueurSuivant();
+        jeux.Users[0].ajouterScore2(8);
+        jeux.joueurSuivant();
+        
+        jeux.Users[1].ajouterScore1(0);
+        jeux.joueurSuivant();
+        jeux.Users[1].ajouterScore2(10);
+        jeux.joueurSuivant();
+        
+        // Bonus Tour
+        jeux.Users[0].ajouterScore1(8);
+        jeux.bonusSuivant()
+
+        jeux.Users[1].ajouterScore1(2);
+        jeux.bonusSuivant()
+
+        expect(jeux.Users[0].getScoreTotal()).to.equal(131);
+        expect(jeux.Users[1].getScoreTotal()).to.equal(109);
     })
 
     it("partie compliqué", () => {
