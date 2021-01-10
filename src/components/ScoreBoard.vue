@@ -1,5 +1,5 @@
 <template>
-    <div class="uk-card uk-card-hover uk-box-shadow-small uk-padding uk-overflow-auto uk-animation-scale-up" href="#modal-center" uk-toggle>
+    <div class="uk-card uk-card-hover uk-box-shadow-large uk-padding uk-overflow-auto uk-animation-scale-up" href="#modal-center" uk-toggle>
         <div id="modal-center" class="uk-flex-top" uk-modal> 
             <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 80%; width: 90%;">
                 <p class="uk-margin uk-padding uk-position-left">TABLEAU DES SCORES</p>
@@ -48,22 +48,84 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="player in playerList" v-bind:key="player">
-                            <td v-if="playerActive(player.nom)" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
-                            <td v-if="!playerActive(player.nom)">{{player.nom}}</td>
-                            <td>{{player.getScoreTourPremierLance(1)}} | {{player.getScoreTourSecondLance(1)}} </td>
-                            <td>{{player.getScoreTourPremierLance(2)}} | {{player.getScoreTourSecondLance(2)}} </td>
-                            <td>{{player.getScoreTourPremierLance(3)}} | {{player.getScoreTourSecondLance(3)}} </td>
-                            <td>{{player.getScoreTourPremierLance(4)}} | {{player.getScoreTourSecondLance(4)}} </td>
-                            <td>{{player.getScoreTourPremierLance(5)}} | {{player.getScoreTourSecondLance(5)}} </td>
-                            <td>{{player.getScoreTourPremierLance(6)}} | {{player.getScoreTourSecondLance(6)}} </td>
-                            <td>{{player.getScoreTourPremierLance(7)}} | {{player.getScoreTourSecondLance(7)}} </td>
-                            <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
-                            <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
-                            <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
-                            <!-- <td>{{player.getScoreTourPremierLance(11)}}</td>
-                            <td>{{player.getScoreTourPremierLance(12)}}</td> -->
-                            <td>{{player.getScoreTotal()}}</td>
+                        <tr v-for="player in playerList" v-bind:key="player.nom">
+                            <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
+                            <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(1) + player.getScoreTourSecondLance(1) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(1)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(2)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(3)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(4)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(5)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(6)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(7)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(8)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(9)}} </span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10)}} </span> 
+                                    <span v-if="player.score[10].premierLance == 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourSecondLance(10)}} </span>
+                                    <span v-if="player.score[10].premierLance != 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourPremierLance(11)}}</span>
+                                    <span v-if="player.score[11].premierLance != 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourPremierLance(12)}}</span>
+                                </div>
+                                <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
+                            </td>
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                                {{player.getScoreTotal()}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -115,22 +177,86 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="player in playerList" v-bind:key="player">
+                <tr v-for="player in playerList" v-bind:key="player.nom">
                     <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
                     <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
-                    <td>{{player.getScoreTourPremierLance(1)}} | {{player.getScoreTourSecondLance(1)}} </td>
-                    <td>{{player.getScoreTourPremierLance(2)}} | {{player.getScoreTourSecondLance(2)}} </td>
-                    <td>{{player.getScoreTourPremierLance(3)}} | {{player.getScoreTourSecondLance(3)}} </td>
-                    <td>{{player.getScoreTourPremierLance(4)}} | {{player.getScoreTourSecondLance(4)}} </td>
-                    <td>{{player.getScoreTourPremierLance(5)}} | {{player.getScoreTourSecondLance(5)}} </td>
-                    <td>{{player.getScoreTourPremierLance(6)}} | {{player.getScoreTourSecondLance(6)}} </td>
-                    <td>{{player.getScoreTourPremierLance(7)}} | {{player.getScoreTourSecondLance(7)}} </td>
-                    <td>{{player.getScoreTourPremierLance(8)}} | {{player.getScoreTourSecondLance(8)}} </td>
-                    <td>{{player.getScoreTourPremierLance(9)}} | {{player.getScoreTourSecondLance(9)}} </td>
-                    <td>{{player.getScoreTourPremierLance(10)}} | {{player.getScoreTourSecondLance(10)}}</td>
-                    <!-- <td>{{player.getScoreTourPremierLance(11)}}</td>
-                    <td>{{player.getScoreTourPremierLance(12)}}</td> -->
-                    <td>{{player.getScoreTotal()}}</td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(1) + player.getScoreTourSecondLance(1) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(1)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2) >= "10" ? "X" : player.getScoreTourPremierLance(2)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(2) + player.getScoreTourSecondLance(2) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(2)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3) >= "10" ? "X" : player.getScoreTourPremierLance(3)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(3) + player.getScoreTourSecondLance(3) == "10") && (player.getScoreTourPremierLance(3) != "10"))  ? "/" : player.getScoreTourSecondLance(3)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4) >= "10" ? "X" : player.getScoreTourPremierLance(4)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(4) + player.getScoreTourSecondLance(4) == "10") && (player.getScoreTourPremierLance(4) != "10"))  ? "/" : player.getScoreTourSecondLance(4)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5) >= "10" ? "X" : player.getScoreTourPremierLance(5)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(5) + player.getScoreTourSecondLance(5) == "10") && (player.getScoreTourPremierLance(5) != "10"))  ? "/" : player.getScoreTourSecondLance(5)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6) >= "10" ? "X" : player.getScoreTourPremierLance(6)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(6) + player.getScoreTourSecondLance(6) == "10") && (player.getScoreTourPremierLance(6) != "10"))  ? "/" : player.getScoreTourSecondLance(6)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7) >= "10" ? "X" : player.getScoreTourPremierLance(7)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(7) + player.getScoreTourSecondLance(7) == "10") && (player.getScoreTourPremierLance(7) != "10"))  ? "/" : player.getScoreTourSecondLance(7)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8) >= "10" ? "X" : player.getScoreTourPremierLance(8)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(8) + player.getScoreTourSecondLance(8) == "10") && (player.getScoreTourPremierLance(8) != "10"))  ? "/" : player.getScoreTourSecondLance(8)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9) >= "10" ? "X" : player.getScoreTourPremierLance(9)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(9) + player.getScoreTourSecondLance(9) == "10") && (player.getScoreTourPremierLance(9) != "10"))  ? "/" : player.getScoreTourSecondLance(9)}} </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10) >= "10" ? "X" : player.getScoreTourPremierLance(10)}} </span> | 
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> 
+                                {{((player.getScoreTourPremierLance(10) + player.getScoreTourSecondLance(10) == "10") && (player.getScoreTourPremierLance(10) != "10"))  ? "/" : player.getScoreTourSecondLance(10)}} 
+                                {{(player.getScoreTourPremierLance(10) > 10 ? " | " + player.getScoreTourPremierLance(10) - 10 : "")}}
+                                {{(player.getScoreTourPremierLance(12) != 0 ? " | " + player.getScoreTourPremierLance(12) : "")}}
+                            </span>
+                        </div>
+                        <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
+                    </td>
+                    <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;font-size: 20pt;">
+                        {{player.getScoreTotal()}}
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -144,18 +270,36 @@ export default {
     },
     data: function(){
       return{
-          playerList: this.$parent.$parent.gameObj.Users
+          playerList: this.$parent.$parent.gameObj.Users,
+          score1: {tour: 1, score: -1},
+          score2: {tour: 2, score: -1},
+          score3: {tour: 3, score: -1},
+          score4: {tour: 4, score: -1},
+          score5: {tour: 5, score: -1},
+          score6: {tour: 6, score: -1},
+          score7: {tour: 7, score: -1},
+          score8: {tour: 8, score: -1},
+          score9: {tour: 9, score: -1},
+          score10: {tour: 10, score: -1},
       }
     }, 
     methods: {
         playerActive: function(nom){
-            // alert(nom)
-            // alert(this.$parent.$parent.gameObj.Users[this.$parent.$parent.i])
             return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.gameObj.joueurCourant].nom ? true : false
         },
+        scoreTourPlayer: function(player, tour){
+            if(player.getScoreTourPremierLance(tour) == 0 && player.getScoreTourSecondLance(tour) == 0){
+                return " "
+            }
+            let res = 0; 
+            for (let i = 1; i <= tour; i++){
+                res += player.getScoreTourPremierLance(i) + player.getScoreTourSecondLance(i)
+            }
+            return res
+        }
     },
     mounted: function(){
-        console.log(this.$parent.$parent.gameObj.Users);
+        // console.log(this.$parent.$parent.gameObj.Users);
     }
 }
 </script>

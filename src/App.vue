@@ -17,15 +17,27 @@ export default {
       }   
   },
   mounted: function(){
+    console.clear();
+    console.log("Bowling App\n")
+    console.log(" mount of /\n")
   }
 }
 </script>
 <style>
+body{
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  /* font-family: 'Yusei Magic', sans-serif; */
+  /* text-align: center; */
+  color: #2c3e50;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  /* font-family: 'Big Shoulders Stencil Text', cursive; */
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  /* font-family: 'Yusei Magic', sans-serif; */
   /* font-family: 'Montserrat', sans-serif; */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
 }
@@ -41,5 +53,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.uk-heading-medium{
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  /* font-family: 'Yusei Magic', sans-serif; */
 }
 </style>

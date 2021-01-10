@@ -26,8 +26,10 @@
                     name="name"
                     autocomplete="off"
                     placeholder="Name..."
+                    v-on:keyup.enter="checkForm()"
                     >
-                    <span v-on:click="checkForm()" uk-icon="plus-circle"></span>
+                    <span v-if="name == ''" v-on:click="checkForm()" uk-icon="plus-circle"></span>
+                    <span v-if="name != ''" v-on:click="checkForm()" uk-icon="check"></span>
                 </div>
             </div>
         </div>
@@ -56,13 +58,17 @@ export default {
   }, 
   methods: {
         checkForm: function (e) {
-          console.log("> In checkForm()\n   name = " + this.name)
+          for(let i = 0; i < this.playerList.length; i++){
+            if(this.name == this.playerList[i]){
+                this.errors.push('Name already exist.');
+                this.name = ""
+                return false
+            }
+          }
           this.playerList.push(this.name)
-          //TODO Ajouter à l'objet Game.addPlayer
-          //this.$parent.gameObj.addPlayer(this.name)
+          console.log("New player added : " + this.name)
           document.getElementById("name").value = ""
-          
-          console.table(this.playerList)
+
             if (this.name) {
                 this.name = ""
                 this.errors.pop()
@@ -79,18 +85,17 @@ export default {
             e.preventDefault();
         },
         supprPlayer: function(name){
-            console.log("> IN supprPlayer \n    name = " + name)
+            console.log(name + " player deleted")
             for (let i = 0; i < this.playerList.length; i++){
                 if (this.playerList[i] == name){
                     this.playerList.splice(i, 1); 
-                    //NOTE a tester i--
                 }
             }
-            console.table(this.playerList)
         }, 
         validForm: function(){
             if(this.playerList.length == 0){
               UIKit.notification({message : "Veuillez jouez avec au moins 1 joueurs", status: 'danger', timeout: 2000});
+              console.error("Veuillez jouez avec au moins 1 joueurs")
             }
             else{
               let gm = new Game();
@@ -100,19 +105,12 @@ export default {
               this.$parent.$parent.gameObj = gm; 
               this.$parent.$parent.formDoned = true;
               UIKit.notification({message : "👋🏻 Bienvenue dans cette nouvelle partie", timeout: 2000});
+              console.log("👋🏻 Bienvenue dans cette nouvelle partie\n  Liste des joueurs : ")
               console.table(gm.Users)
+              this.$parent.currentPlayer = this.$parent.$parent.gameObj.Users[0].nom
             }
             
-        },
-        // loadData: function(){
-        //   let tab = []
-        //   if(this.$parent.$parent.gameObj.Users != null){
-        //     for(let i = 0; i < this.$parent.$parent.gameObj.Users.length; i++){
-        //       tab.push(this.$parent.$parent.gameObj.Users.name)
-        //     }
-        //   }
-        //   return tab;
-  // },
+        }
   },
   directives: {
   focus: {
