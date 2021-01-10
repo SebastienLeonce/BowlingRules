@@ -30,10 +30,15 @@ export default class User {
 
         if (n > 0 && (this.score[n-1].isSpare() || this.score[n-1].isStrike())) {
             this.score[n-1].updatePremierLancer(this.score[n-1].getScorePremierLance() + score1);
-         }
+        }
+
+        // console.log("score n = "+ this.score[n])
         if (n > 1 && this.score[n-2].isStrike() && (this.score[n-1].isStrike() || this.score[n].strikeBonus)) {
              this.score[n-2].updatePremierLancer(this.score[n-2].getScorePremierLance() + score1);
-         }
+        }
+        else if (n == 11 && this.score[n-2].isStrike()){
+            this.score[n-2].updatePremierLancer(this.score[n-2].getScorePremierLance() + score1);
+        }
 
         
         if (this.score[n].isStrike()) {
@@ -43,13 +48,19 @@ export default class User {
             this.lanceCourant = 1;
             this.tourFinis = true;
 
-
-        } else {
+        } 
+        else if (n > 9){
+            this.lanceCourant = 1;
+            this.tourFinis = true;
+            // alert("Lancer après 10ème tour")
+        }
+        else {
             this.lanceCourant = 2;
         }
     }
 
     ajouterScore2(score2) {
+        this.tourFinis = false;
         let n = this.tourCourant - 1;
 
         if (!Number.isInteger(score2) || score2 < 0) throw new Error("Use Int Type")
