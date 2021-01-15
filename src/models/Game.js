@@ -1,5 +1,8 @@
 import ObjUser from './User';
 
+const tourPasBonus = 10;
+const strike = 10;
+
 export default class Game {
     constructor () {
         this.Users         = [];
@@ -22,7 +25,8 @@ export default class Game {
     }
 
     joueurSuivant() {
-        if (this.tourCourant < 11) {
+        // Gestion des tours des joueurs pour les tours non bonus
+        if (this.tourCourant < tourPasBonus + 1) {
             if (this.joueurCourant < this.Users.length - 1) {
                 if (this.Users[this.joueurCourant].tourFinis) {
                     this.joueurCourant++;
@@ -36,30 +40,19 @@ export default class Game {
                     }
                 }
             }
-
-            if (this.tourCourant == 11){
+            // Gestion des tours des joueurs pour le tour 11
+            if (this.tourCourant == tourPasBonus + 1){
                 for(let i = 0; i < this.Users.length; i++){
-                    // console.log(this.Users[i].score[9])
-                    // console.log("Dernier tour réglementaire fini pour : " + this.Users[i].nom + " | id : \n"
-                    //       + "   Score 1er lancer : " + this.Users[i].score[9].premierLance + "\n"
-                    //       + "   Score 2ème lancer : " + this.Users[i].score[9].secondLance + "\n");
 
-                    if (this.Users[i].score[9].premierLance == 10 || (this.Users[i].score[9].premierLance != 10 && this.Users[i].score[9].premierLance + this.Users[i].score[9].secondLance == 10)){
-                        // console.log((this.Users[i].score[9].premierLance == 10 ? "Passage au 11 et 12 tour pour : " + this.Users[i].nom + " car il a fait un " + "Strike" : "Passage au 11 tour pour : " + this.Users[i].nom + " car il a fait un " + "Spaire"));
+                    if (this.Users[i].score[tourPasBonus - 1].premierLance == strike || (this.Users[i].score[tourPasBonus - 1].premierLance != strike && this.Users[i].score[tourPasBonus - 1].premierLance + this.Users[i].score[tourPasBonus - 1].secondLance == strike)){
                         this.bonusList.push(i)
                     }
                     else{
-                        // console.log("Fin de partie pour : " + this.Users[i].nom);
                         this.blackList.push(i);
                     }
                 }
 
                 if (this.bonusList.length !=0){
-                    // console.log("11 ème tour sauf pour les blacklister")
-                    // console.log("Blacklist : ")
-                    // console.table(this.blackList)
-                    // console.log("BonusList : ")
-                    // console.table(this.bonusList)
                     this.joueurCourant = this.bonusList[0];
                 }
                 else{
@@ -73,17 +66,16 @@ export default class Game {
     }
 
     bonusSuivant(){
-        if (this.tourCourant == 11) {
+        if (this.tourCourant == tourPasBonus + 1) {
             // Si le joueur ayant un bonus à fini son lancer
             if(this.Users[this.joueurCourant].tourFinis){
 
                 if(this.bonusCourant < this.bonusList.length - 1){
                     // Si il a droit à qu'un seule lancer, on le blacklist
-                    if(this.Users[this.joueurCourant].score[9].isSpare()){
+                    if(this.Users[this.joueurCourant].score[tourPasBonus-1].isSpare()){
                         this.blackList.push(this.joueurCourant);
                         // console.log(this.Users[this.joueurCourant].nom + " player is blacklisted")
                     }
-                    // console.log("bonusList.lenght = " + this.bonusList.length)
                     // On passe au joueur suviant
                     if(this.blackList.length == this.Users.length){
                         return -1;
@@ -95,7 +87,7 @@ export default class Game {
                 }
                 else if(this.bonusCourant == this.bonusList.length - 1){
                     // Si il a droit à qu'un seule lancer, on le blacklist
-                    if(this.Users[this.joueurCourant].score[9].isSpare()){
+                    if(this.Users[this.joueurCourant].score[tourPasBonus - 1].isSpare()){
                         this.blackList.push(this.joueurCourant);
                         // console.log(this.Users[this.joueurCourant].nom + " player is blacklisted")
                     }
@@ -122,15 +114,9 @@ export default class Game {
                 }
             }
         } 
-        else if(this.tourCourant == 12){
+        else if(this.tourCourant == tourPasBonus + 2){
 
             if(this.Users[this.joueurCourant].tourFinis){
-                //FIXME Cas ou le 2ème lancer bonus est différent de Strike, le score s'actualise pas avec le dernier lancer
-                // if(!this.Users[this.joueurCourant].score[11].isStrike()){
-                //     this.Users[this.joueurCourant].score[9].premierLance += this.Users[this.joueurCourant].score[11].premierLance;
-                // }
-                // console.log(this.Users[this.joueurCourant].score[11].premierLance)
-                // console.table(this.Users[this.joueurCourant].score)
                 if(this.bonusCourant < this.bonusList.length - 1){
                     this.blackList.push(this.joueurCourant);
 
