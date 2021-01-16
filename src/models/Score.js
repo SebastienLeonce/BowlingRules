@@ -1,3 +1,6 @@
+const strike = 10;
+const MinQuille = 0
+
 export default class Score {
     constructor () {
         this.premierLance = 0;
@@ -21,14 +24,14 @@ export default class Score {
     }
 
     isStrike() {
-        if (this.secondLance == 0 && this.premierLance != 0 && (this.premierLance%10 == 0 || this.premierLance > 10)) {
+        if (this.secondLance == MinQuille && this.premierLance != MinQuille && (this.premierLance%strike == 0 || this.premierLance > strike)) {
             return true;
         }
         return false;
     } 
 
     isSpare() {
-        if (!this.isStrike() && this.premierLance + this.secondLance >= 10 && this.secondLance != 0) {
+        if (!this.isStrike() && this.premierLance + this.secondLance >= 10 && this.secondLance != MinQuille) {
             return true;
         }
         return false;
