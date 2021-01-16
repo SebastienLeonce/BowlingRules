@@ -23,12 +23,10 @@
 <script>
 export default {
     name: 'PlayerForm',
-    props: {
-    },
     data: function(){
       return{
-          playerList: this.$parent.$parent.gameObj.Users,
-          playerCurrent: this.$parent.currentPlayer
+          playerList: this.$parent.$parent.gameObj.Users,   /** @type Arraylist<User> @description Liste des joueurs d'une partie */
+          playerCurrent: this.$parent.currentPlayer         /** @type Int @description L'index du joueur courant dans playerList */
       }
     }, 
     mounted: function(){
@@ -37,11 +35,21 @@ export default {
         console.table(this.sortPlayer())
     },
     methods: {
+        /** 
+         * @method playerActive()
+         * @param nom
+         * @returns true si le joueur $nom est le joueur courant, faux sinon
+         * @description Renvoie le joueur actif
+         */
         playerActive: function(nom){
-            // alert(nom)
-            // alert(this.$parent.$parent.gameObj.Users[this.$parent.$parent.i])
             return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.gameObj.joueurCourant].nom ? true : false
         },
+        /**
+         * @method sortPlayer()
+         * @param none
+         * @returns le tableau des joueurs triés par le score descroissant
+         * @description Tri les joueurs en fonction de leur score
+         */
         sortPlayer: function(){
             let list = this.$parent.$parent.gameObj.Users
             let res = []

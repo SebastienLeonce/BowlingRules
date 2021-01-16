@@ -1,7 +1,7 @@
 <template>
-    <div class="uk-card uk-card-hover uk-box-shadow-large uk-padding uk-overflow-auto uk-animation-scale-up" href="#modal-center" uk-toggle>
+    <div v-bind:class="{'scoreBoard-dark': $parent.isDark}" class="scoreBoard uk-card uk-card-default uk-box-shadow-large uk-padding uk-overflow-auto uk-animation-slide-top" href="#modal-center" uk-toggle>
         <div id="modal-center" class="uk-flex-top" uk-modal> 
-            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 80%; width: 90%;">
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 80%; width: 90%;" v-bind:class="{'scoreBoard-dark': $parent.isDark}">
                 <p class="uk-margin uk-padding uk-position-left">TABLEAU DES SCORES</p>
                 <br>
                 <table class="uk-table uk-table-responsive uk-table-divider">
@@ -38,12 +38,6 @@
                             <th id=10 v-if="$parent.$parent.gameObj.tourCourant == 10" style="color: red;">10</th>
                             <th id=10 v-if="$parent.$parent.gameObj.tourCourant != 10">10</th>
 
-                            <!-- <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
-                            <th id=11 v-if="$parent.$parent.gameObj.tourCourant != 11">11</th>
-
-                            <th id=12 v-if="$parent.$parent.gameObj.tourCourant == 12" style="color: red;">12</th>
-                            <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th> -->
-
                             <th id=Score>Score</th>
                         </tr>
                     </thead>
@@ -51,6 +45,7 @@
                         <tr v-for="player in playerList" v-bind:key="player.nom">
                             <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
                             <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
+                           
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
@@ -58,6 +53,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2)}} </span> | 
@@ -65,6 +61,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3)}} </span> | 
@@ -72,6 +69,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4)}} </span> | 
@@ -79,6 +77,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5)}} </span> | 
@@ -86,6 +85,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6)}} </span> | 
@@ -93,6 +93,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
                             </td>
+                           
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7)}} </span> | 
@@ -100,6 +101,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8)}} </span> | 
@@ -107,6 +109,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9)}} </span> | 
@@ -114,6 +117,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10)}} </span> 
@@ -123,6 +127,7 @@
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
                             </td>
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 {{player.getScoreTotal()}}
                             </td>
@@ -167,12 +172,6 @@
                     <th id=10 v-if="$parent.$parent.gameObj.tourCourant == 10" style="color: red;">10</th>
                     <th id=10 v-if="$parent.$parent.gameObj.tourCourant != 10">10</th>
 
-                    <!-- <th id=11 v-if="$parent.$parent.gameObj.tourCourant == 11" style="color: red;">11</th>
-                    <th id=11 v-if="$parent.$parent.gameObj.tourCourant != 11">11</th>
-
-                    <th id=12 v-if="$parent.$parent.gameObj.tourCourant == 12" style="color: red;">12</th>
-                    <th id=12 v-if="$parent.$parent.gameObj.tourCourant != 12">12</th> -->
-
                     <th id=Score>Score</th>
                 </tr>
             </thead>
@@ -180,6 +179,7 @@
                 <tr v-for="player in playerList" v-bind:key="player.nom">
                     <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
                     <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
@@ -187,6 +187,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2) >= "10" ? "X" : player.getScoreTourPremierLance(2)}} </span> | 
@@ -194,6 +195,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3) >= "10" ? "X" : player.getScoreTourPremierLance(3)}} </span> | 
@@ -201,6 +203,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4) >= "10" ? "X" : player.getScoreTourPremierLance(4)}} </span> | 
@@ -208,6 +211,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5) >= "10" ? "X" : player.getScoreTourPremierLance(5)}} </span> | 
@@ -215,6 +219,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6) >= "10" ? "X" : player.getScoreTourPremierLance(6)}} </span> | 
@@ -222,6 +227,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7) >= "10" ? "X" : player.getScoreTourPremierLance(7)}} </span> | 
@@ -229,6 +235,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8) >= "10" ? "X" : player.getScoreTourPremierLance(8)}} </span> | 
@@ -236,6 +243,7 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9) >= "10" ? "X" : player.getScoreTourPremierLance(9)}} </span> | 
@@ -243,17 +251,19 @@
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10) >= "10" ? "X" : player.getScoreTourPremierLance(10)}} </span> | 
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> 
                                 {{((player.getScoreTourPremierLance(10) + player.getScoreTourSecondLance(10) == "10") && (player.getScoreTourPremierLance(10) != "10"))  ? "/" : player.getScoreTourSecondLance(10)}} 
                                 {{(player.getScoreTourPremierLance(10) > 10 ? " | " + player.getScoreTourPremierLance(10) - 10 : "")}}
-                                {{(player.getScoreTourPremierLance(12) != 0 ? " | " + player.getScoreTourPremierLance(12) : "")}}
+                                <!-- {{(player.getScoreTourPremierLance(12) != 0 ? " | " + player.getScoreTourPremierLance(12) : "")}} -->
                             </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
                     </td>
+                    
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;font-size: 20pt;">
                         {{player.getScoreTotal()}}
                     </td>
@@ -270,23 +280,35 @@ export default {
     },
     data: function(){
       return{
-          playerList: this.$parent.$parent.gameObj.Users,
-          score1: {tour: 1, score: -1},
-          score2: {tour: 2, score: -1},
-          score3: {tour: 3, score: -1},
-          score4: {tour: 4, score: -1},
-          score5: {tour: 5, score: -1},
-          score6: {tour: 6, score: -1},
-          score7: {tour: 7, score: -1},
-          score8: {tour: 8, score: -1},
-          score9: {tour: 9, score: -1},
-          score10: {tour: 10, score: -1},
+          playerList: this.$parent.$parent.gameObj.Users,   /** @type ArrayList<User> @description Liste des joueurs */
+          score1: {tour: 1, score: -1},                     /** @type JSONObject      @description Score et tour de la case 1 */
+          score2: {tour: 2, score: -1},                     /** @type JSONObject      @description Score et tour de la case 2 */
+          score3: {tour: 3, score: -1},                     /** @type JSONObject      @description Score et tour de la case 3 */
+          score4: {tour: 4, score: -1},                     /** @type JSONObject      @description Score et tour de la case 4 */
+          score5: {tour: 5, score: -1},                     /** @type JSONObject      @description Score et tour de la case 5 */
+          score6: {tour: 6, score: -1},                     /** @type JSONObject      @description Score et tour de la case 6 */
+          score7: {tour: 7, score: -1},                     /** @type JSONObject      @description Score et tour de la case 7 */
+          score8: {tour: 8, score: -1},                     /** @type JSONObject      @description Score et tour de la case 8 */
+          score9: {tour: 9, score: -1},                     /** @type JSONObject      @description Score et tour de la case 9 */
+          score10: {tour: 10, score: -1},                   /** @type JSONObject      @description Score et tour de la case 10 */
       }
     }, 
     methods: {
+        /** 
+         * @method playerActive()
+         * @param nom
+         * @returns true si le joueur $nom est le joueur courant, faux sinon
+         * @description Renvoie le joueur actif
+         */
         playerActive: function(nom){
             return nom == this.$parent.$parent.gameObj.Users[this.$parent.$parent.gameObj.joueurCourant].nom ? true : false
         },
+        /**
+         * @method scoreTourPlayer()
+         * @param player le joueur, @param tour le tour courant
+         * @returns res, le score total au tour n 
+         * @description Calcul du score total au tour n  
+         */
         scoreTourPlayer: function(player, tour){
             if(player.getScoreTourPremierLance(tour) == 0 && player.getScoreTourSecondLance(tour) == 0){
                 return " "
@@ -297,12 +319,20 @@ export default {
             }
             return res
         }
-    },
-    mounted: function(){
-        // console.log(this.$parent.$parent.gameObj.Users);
     }
 }
 </script>
 
 <style scoped>
+
+.scoreBoard{
+    background-color: rgb(255,255,255,0.95);
+}
+.scoreBoard-dark{
+    background-color: rgb(51,51,51,0.95);
+    color: white;
+}
+.text-white{
+    color:white;
+}
 </style>

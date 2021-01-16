@@ -1,7 +1,7 @@
 <template>
-    <div class="rulestext uk-card uk-card-hover uk-box-shadow-small uk-overflow-auto uk-animation-scale-up">
+    <div v-bind:class="{dark: $parent.$parent.isDark}" class="rulestext uk-card uk-card-default uk-box-shadow-small uk-overflow-auto uk-animation-scale-up">
         <div id="modal-rules" class="uk-flex-top" uk-modal>
-            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto" style="height: 60%; width: 70%;">
+            <div v-bind:class="{dark: $parent.$parent.isDark}" class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto" style="height: 90%; width: 90%;">
               Une partie de bowling se joue en 10 tours.
               A chaque tour, le but est de <strong>renverser les 10 quilles</strong>.
               Les participants jouent chacun leur tour. A chaque tour, lors du premier lancer, le joueur note dans l’application le nombre de quilles renversées :
@@ -34,7 +34,7 @@
               Compte tenu de ces bonifications, le maximum de points par partie est de 300.
             </div>
         </div>
-        <div href="#modal-rules" uk-toggle>
+        <div v-bind:class="{dark: $parent.$parent.isDark}" href="#modal-rules" uk-toggle>
         Une partie de bowling se joue en 10 tours.
         A chaque tour, le but est de <strong>renverser les 10 quilles</strong>.
         Les participants jouent chacun leur tour. A chaque tour, lors du premier lancer, le joueur note dans l’application le nombre de quilles renversées :
@@ -72,19 +72,11 @@
 
 <script>
 export default {
-  name: 'RulesText',
-  props: {
-  },
-  data: function(){
-    return{
-    }
-  }, 
-  methods: {
-  }
+  name: 'RulesText'
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 h3 {
   margin: 40px 0 0;
@@ -108,5 +100,9 @@ a {
   width: 80%;
   text-align: left;
   padding: 2%;
+}
+.dark{
+    background-color: rgb(51, 51, 51);
+    color: white;
 }
 </style>
