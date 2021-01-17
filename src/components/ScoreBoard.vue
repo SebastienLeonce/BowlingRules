@@ -4,7 +4,7 @@
             <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-overflow-auto uk-animation-fade" style="height: 80%; width: 90%;" v-bind:class="{'scoreBoard-dark': $parent.isDark}">
                 <p class="uk-margin uk-padding uk-position-left">TABLEAU DES SCORES</p>
                 <br>
-                <table class="uk-table uk-table-responsive uk-table-divider">
+                <table class="uk-table uk-table-divider">
                     <thead>
                         <tr>
                             <th id=Joueurs>Joueurs</th>
@@ -45,90 +45,92 @@
                         <tr v-for="player in playerList" v-bind:key="player.nom">
                             <td v-if="playerActive(player.nom)" class="uk-animation-slide-left" style="background-color: rgba(10,10,10,0.2);">{{player.nom}} <span style="color: #7DFF33;"> •</span></td>
                             <td v-if="!playerActive(player.nom)" class="uk-animation-slide-right">{{player.nom}}</td>
-                           
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                                     <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(1) + player.getScoreTourSecondLance(1) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(1)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[0].isSpare())  ? "/" : player.getScoreTourSecondLance(1)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(2)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2) >= "10" ? "X" : player.getScoreTourPremierLance(2)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[1].isSpare())  ? "/" : player.getScoreTourSecondLance(2)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(3)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3) >= "10" ? "X" : player.getScoreTourPremierLance(3)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[2].isSpare())  ? "/" : player.getScoreTourSecondLance(3)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(4)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4) >= "10" ? "X" : player.getScoreTourPremierLance(4)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[3].isSpare()) ? "/" : player.getScoreTourSecondLance(4)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(5)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5) >= "10" ? "X" : player.getScoreTourPremierLance(5)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[4].isSpare()) ? "/" : player.getScoreTourSecondLance(5)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(6)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6) >= "10" ? "X" : player.getScoreTourPremierLance(6)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[5].isSpare()) ? "/" : player.getScoreTourSecondLance(6)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
                             </td>
-                           
+                            
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(7)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7) >= "10" ? "X" : player.getScoreTourPremierLance(7)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[6].isSpare()) ? "/" : player.getScoreTourSecondLance(7)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(8)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8) >= "10" ? "X" : player.getScoreTourPremierLance(8)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[7].isSpare()) ? "/" : player.getScoreTourSecondLance(8)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9)}} </span> | 
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourSecondLance(9)}} </span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9) >= "10" ? "X" : player.getScoreTourPremierLance(9)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[8].isSpare()) ? "/" : player.getScoreTourSecondLance(9)}} </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
                             </td>
                             
                             <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
-                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10)}} </span> 
-                                    <span v-if="player.score[10].premierLance == 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourSecondLance(10)}} </span>
-                                    <span v-if="player.score[10].premierLance != 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourPremierLance(11)}}</span>
-                                    <span v-if="player.score[11].premierLance != 0" class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> | {{player.getScoreTourPremierLance(12)}}</span>
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10) >= "10" ? "X" : player.getScoreTourPremierLance(10)}} </span> | 
+                                    <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> 
+                                        {{(player.score[9].isSpare())  ? "/" : player.getScoreTourSecondLance(10)}} 
+                                        {{(player.getScoreTourPremierLance(10) > 10 ? " | + " + (parseInt(player.getScoreTourPremierLance(10)) - 10) : "")}}
+                                        {{(player.getScoreTourPremierLance(11) != 0 ? " | " + player.getScoreTourPremierLance(11) : "")}}
+                                    </span>
                                 </div>
                                 <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
                             </td>
                             
-                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
+                            <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;font-size: 20pt;">
                                 {{player.getScoreTotal()}}
                             </td>
                         </tr>
@@ -138,7 +140,7 @@
         </div>
         <p class="uk-margin uk-padding uk-position-left">TABLEAU DES SCORES</p>
         <br>
-        <table class="uk-table uk-table-responsive uk-table-divider">
+        <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
                     <th id=Joueurs>Joueurs</th>
@@ -183,7 +185,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(1) >= "10" ? "X" : player.getScoreTourPremierLance(1)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(1) + player.getScoreTourSecondLance(1) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(1)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[0].isSpare())  ? "/" : player.getScoreTourSecondLance(1)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 1)}} </div>
                     </td>
@@ -191,7 +193,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(2) >= "10" ? "X" : player.getScoreTourPremierLance(2)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(2) + player.getScoreTourSecondLance(2) == "10") && (player.getScoreTourPremierLance(1) != "10"))  ? "/" : player.getScoreTourSecondLance(2)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[1].isSpare())  ? "/" : player.getScoreTourSecondLance(2)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 2)}}  </div>
                     </td>
@@ -199,7 +201,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(3) >= "10" ? "X" : player.getScoreTourPremierLance(3)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(3) + player.getScoreTourSecondLance(3) == "10") && (player.getScoreTourPremierLance(3) != "10"))  ? "/" : player.getScoreTourSecondLance(3)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[2].isSpare())  ? "/" : player.getScoreTourSecondLance(3)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 3)}}  </div>
                     </td>
@@ -207,7 +209,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(4) >= "10" ? "X" : player.getScoreTourPremierLance(4)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(4) + player.getScoreTourSecondLance(4) == "10") && (player.getScoreTourPremierLance(4) != "10"))  ? "/" : player.getScoreTourSecondLance(4)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[3].isSpare()) ? "/" : player.getScoreTourSecondLance(4)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 4)}} </div>
                     </td>
@@ -215,7 +217,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(5) >= "10" ? "X" : player.getScoreTourPremierLance(5)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(5) + player.getScoreTourSecondLance(5) == "10") && (player.getScoreTourPremierLance(5) != "10"))  ? "/" : player.getScoreTourSecondLance(5)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[4].isSpare()) ? "/" : player.getScoreTourSecondLance(5)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 5)}} </div>
                     </td>
@@ -223,7 +225,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(6) >= "10" ? "X" : player.getScoreTourPremierLance(6)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(6) + player.getScoreTourSecondLance(6) == "10") && (player.getScoreTourPremierLance(6) != "10"))  ? "/" : player.getScoreTourSecondLance(6)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[5].isSpare()) ? "/" : player.getScoreTourSecondLance(6)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 6)}} </div>
                     </td>
@@ -231,7 +233,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(7) >= "10" ? "X" : player.getScoreTourPremierLance(7)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(7) + player.getScoreTourSecondLance(7) == "10") && (player.getScoreTourPremierLance(7) != "10"))  ? "/" : player.getScoreTourSecondLance(7)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[6].isSpare()) ? "/" : player.getScoreTourSecondLance(7)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 7)}} </div>
                     </td>
@@ -239,7 +241,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(8) >= "10" ? "X" : player.getScoreTourPremierLance(8)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(8) + player.getScoreTourSecondLance(8) == "10") && (player.getScoreTourPremierLance(8) != "10"))  ? "/" : player.getScoreTourSecondLance(8)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[7].isSpare()) ? "/" : player.getScoreTourSecondLance(8)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 8)}} </div>
                     </td>
@@ -247,7 +249,7 @@
                     <td class="uk-padding-remove uk-marggin-remove" style="border: 1pt solid;">
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(9) >= "10" ? "X" : player.getScoreTourPremierLance(9)}} </span> | 
-                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{((player.getScoreTourPremierLance(9) + player.getScoreTourSecondLance(9) == "10") && (player.getScoreTourPremierLance(9) != "10"))  ? "/" : player.getScoreTourSecondLance(9)}} </span>
+                            <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{(player.score[8].isSpare()) ? "/" : player.getScoreTourSecondLance(9)}} </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 9)}} </div>
                     </td>
@@ -256,7 +258,7 @@
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%;">
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10) >= "10" ? "X" : player.getScoreTourPremierLance(10)}} </span> | 
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> 
-                                {{((player.getScoreTourPremierLance(10) + player.getScoreTourSecondLance(10) == "10") && (player.getScoreTourPremierLance(10) != "10"))  ? "/" : player.getScoreTourSecondLance(10)}} 
+                                {{(player.score[9].isSpare())  ? "/" : player.getScoreTourSecondLance(10)}} 
                                 {{(player.getScoreTourPremierLance(10) > 10 ? " | + " + (parseInt(player.getScoreTourPremierLance(10)) - 10) : "")}}
                                 {{(player.getScoreTourPremierLance(11) != 0 ? " | " + player.getScoreTourPremierLance(11) : "")}}
                             </span>

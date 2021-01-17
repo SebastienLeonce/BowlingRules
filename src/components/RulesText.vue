@@ -100,6 +100,14 @@ a {
   width: 80%;
   text-align: left;
   padding: 2%;
+  /* font-family: 'Big Shoulders Stencil Text', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  /* font-family: 'Quicksand', sans-serif; */
+  /* font-family: 'Indie Flower', cursive; */
+  /* font-family: 'Bangers', cursive; */
+}
+#modal-rules{
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 .dark{
     background-color: rgb(51, 51, 51);

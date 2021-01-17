@@ -36,9 +36,9 @@ export default {
   name: 'PlayerForm',
   data: function(){
     return{
-      playerList: [],   /** @type ArrayList<User>   @description Liste des joueurs inscrit dans le formulaire */
-      errors: [],       /** @type ArrayList<String> @description Liste des erreurs rencontrés lors de l'inscription des joueurs */
-      name: ""          /** @type String            @description Nom du joueur inscrit */
+      playerList: this.$parent.newPlayerList,   /** @type ArrayList<User>   @description Liste des joueurs inscrit dans le formulaire */
+      errors: [],                               /** @type ArrayList<String> @description Liste des erreurs rencontrés lors de l'inscription des joueurs */
+      name: ""                                  /** @type String            @description Nom du joueur inscrit */
     }
   }, 
   methods: {
@@ -115,6 +115,14 @@ export default {
           this.$parent.currentPlayer = this.$parent.$parent.gameObj.Users[0].nom;
           return true;
         }
+    }
+  },
+  mounted:{
+    loadPlayer: function(){
+      alert(this.$parent.newPlayerList.length)
+      if(this.$parent.newPlayerList.length != 0){
+        this.playerList = this.$parent.newPlayerList;
+      }
     }
   },
   directives: {
