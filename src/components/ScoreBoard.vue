@@ -257,8 +257,8 @@
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> {{player.getScoreTourPremierLance(10) >= "10" ? "X" : player.getScoreTourPremierLance(10)}} </span> | 
                             <span class="uk-padding-remove uk-marggin-remove" style="height:100%; width:50%;"> 
                                 {{((player.getScoreTourPremierLance(10) + player.getScoreTourSecondLance(10) == "10") && (player.getScoreTourPremierLance(10) != "10"))  ? "/" : player.getScoreTourSecondLance(10)}} 
-                                {{(player.getScoreTourPremierLance(10) > 10 ? " | " + player.getScoreTourPremierLance(10) - 10 : "")}}
-                                <!-- {{(player.getScoreTourPremierLance(12) != 0 ? " | " + player.getScoreTourPremierLance(12) : "")}} -->
+                                {{(player.getScoreTourPremierLance(10) > 10 ? " | + " + (parseInt(player.getScoreTourPremierLance(10)) - 10) : "")}}
+                                {{(player.getScoreTourPremierLance(11) != 0 ? " | " + player.getScoreTourPremierLance(11) : "")}}
                             </span>
                         </div>
                         <div class="uk-padding-remove uk-marggin-remove" style="height:50%; width:100%; border-top: 1pt solid;"> {{scoreTourPlayer(player, 10)}} </div>
