@@ -1,64 +1,33 @@
 <template>
-  <div class="game uk-card uk-card-default uk-box-shadow-xlarge uk-position-center uk-padding uk-animation-fade" style="position:absolute; height: 95%; width: 95%;">
-      <!-- <router-link class="uk-position-top-left" to="/" uk-icon="icon: arrow-left; ratio:1"></router-link>  -->
-      <router-link class="uk-position-top-right uk-padding-right-small uk-padding-top-remove" to="/rules" style="color: black;font-size: 10pt;line-height: 2pt;font-size: 8pt;"><span>REGLES </span><span uk-icon="icon: question; ratio:0.7"></span></router-link>
-      <p v-if="$parent.formDoned === true" class="uk-position-top-left" type="button" uk-icon="icon: list; ratio:0.7" style="left: 1px; top: 1px;"></p>
-      <div v-if="$parent.formDoned === true" uk-dropdown>
-          <ul class="uk-nav uk-dropdown-nav" style="text-align: left;">
-              <span v-if="$parent.formDoned === true">
-                <li class="uk-nav-header">Partie en cours</li>
-                <li class="uk-nav-divider"></li>
-                <li style="color: black;" v-on:click="reloadPage()"><a style="color: black;">Recommencez</a></li>
-                <router-link class="uk-padding-right-small uk-padding-top-remove" to="/" style="color: black;">Quitter</router-link><br>
-              </span>
-              <!-- <li class="uk-nav-divider"></li>
-              <li><a href="">Credits</a></li> -->
-          </ul>
-      </div>
-
-      <p class="uk-position-top-center uk-margin-remove uk-padding-remove" style="font-size: 8pt;">BOWLING</p>
-      <PlayerForm v-if="$parent.formDoned === false" class="uk-animation-scale-down"/>
-      <!-- <PlayerBoard v-if="$parent.formDoned === true" style="position: absolute; height: 90%; width: 20%; left: 2%;"/> -->
+  <div v-bind:class="{ dark: isDark }" class="game uk-card uk-card-default uk-box-shadow-xlarge uk-position-center uk-padding">
+      <div class="back uk-animation-slide-right"></div>
+      <Header/>
+      <PlayerForm v-if="$parent.formDoned === false" class="playerForm uk-animation-slide-left"/>
       <ScoreBoard v-if="$parent.formDoned === true" style="position: absolute; width: 96.2%; height: 50%; left: 2%;"/>
       <ScoreMaker v-if="$parent.formDoned === true" style="position: absolute; width: 96.2%; top: 57.5%; height: 40%; left: 2%;"/>
-      <!-- <div id="offcanvas-push" >
-          <div class="uk-offcanvas-bar uk-animation-slide-left" style="position: absolute; height: 100%; top: 0%; left: 0%;">
-
-              <button class="uk-offcanvas-close" type="button" uk-close></button>
-
-              <h3>Title</h3>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-          </div>
-      </div> -->
   </div>
 </template>
 
 <script>
 import PlayerForm from '@/components/PlayerForm.vue'
-// import PlayerBoard from '@/components/PlayerBoard.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
 import ScoreMaker from '@/components/ScoreMaker.vue'
+import Header from '@/components/Header.vue'
+
 export default {
   name: 'Game',
   components: {
       PlayerForm,
-      // PlayerBoard,
       ScoreBoard,
-      ScoreMaker
+      ScoreMaker,
+      Header
   },
   data: function(){
     return {
-      // currentPlayer: this.$parent.gameObj.Users[0].nom,
-      currentPlayer: "",
-      strike: false
+      currentPlayer: "",            /** @type string  @description Nom du joueur courant */
+      strike: false,                /** @type boolean @description Indication si le lancer est un strike ou non pour l'affichage des animations */
+      isDark: this.$parent.isDark   /** @type boolean @description Indication si le thème selectionné est en mode nuit ou non */
     }
-  },
-  methods: {
-    reloadPage(){
-            window.location.reload()
-        }
   },
   mounted: function(){
     console.log(" mount of /game\n")
@@ -73,4 +42,50 @@ export default {
   top: 2.5%; 
   left: 2.5%;
 }
+.text-white{
+  color: white;
+}
+.text-dark{
+  color: rgb(51,51,51);
+}
+.dark{
+  background-color: rgb(51,51,51);
+  color:white;
+}
+
+@media screen and (min-width: 800px) {
+  .game{
+  position:absolute; 
+  height: 95%; 
+  width: 95%;
+  }
+  .back{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    clip-path: polygon(0% 0%, 69% 0%, 28% 100%, 28% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 78%, 0% 27%);
+    background-size: 100% 100%;
+    background-color: rgb(93,108,180);
+  }
+} 
+
+@media screen and (max-width: 800px) {
+  .game{
+  position:absolute; 
+  height: 100%; 
+  width: 100%
+  }
+  .playerForm{
+    position:absolute; 
+    height: 90%; 
+    width: 90%;
+    left: 5%;
+    top: 5%;
+  }
+  .black-mobile{
+    color: black;
+  }
+} 
 </style>
