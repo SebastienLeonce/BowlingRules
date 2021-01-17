@@ -26,7 +26,8 @@ export default {
     return {
       currentPlayer: "",            /** @type string  @description Nom du joueur courant */
       strike: false,                /** @type boolean @description Indication si le lancer est un strike ou non pour l'affichage des animations */
-      isDark: this.$parent.isDark   /** @type boolean @description Indication si le thème selectionné est en mode nuit ou non */
+      isDark: this.$parent.isDark,   /** @type boolean @description Indication si le thème selectionné est en mode nuit ou non */
+      newPlayerList: []
     }
   },
   mounted: function(){

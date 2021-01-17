@@ -26,6 +26,11 @@ export default {
          */
         reloadPage(){
             this.$parent.$parent.$parent.formDoned = false;
+            let newPlayerList = [];
+            for(let i = 0; i < this.playerList.length; i++){
+                newPlayerList[i] = this.$parent.$parent.$parent[i].nom;
+            }
+            this.$parent.$parent.newPlayerList = newPlayerList;
             this.$router.push('/game')
         },
         /** 

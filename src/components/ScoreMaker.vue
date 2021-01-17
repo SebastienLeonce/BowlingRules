@@ -12,8 +12,8 @@
         <label v-if="score1Display === true" class="uk-form-label" for="form-horizontal-text" v-bind:class="{'text-white': $parent.isDark}">1er lancer</label>
         <div v-if="score1Display === true" class="uk-margin" v-bind:class="{'text-white': $parent.isDark}">
             <div class="uk-button-group" v-bind:class="{'text-white': $parent.isDark}">
-                <button v-bind:class="{'text-white': $parent.isDark}" v-if="score1 != 0" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 0; scoreSelected = true">0</button>
-                <button v-bind:class="{'text-white': $parent.isDark}" v-if="score1 == 0" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 0; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">0</button>
+                <button v-bind:class="{'text-white': $parent.isDark}" v-if="parseInt(score1) != 0" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 0; scoreSelected = true">0</button>
+                <button v-bind:class="{'text-white': $parent.isDark}" v-if="parseInt(score1) == 0" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 0; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">0</button>
 
                 <button v-bind:class="{'text-white': $parent.isDark}" v-if="score1 != 1" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 1; scoreSelected = true">1</button>
                 <button v-bind:class="{'text-white': $parent.isDark}" v-if="score1 == 1" class="uk-button uk-button-default uk-padding-small" v-on:click="score1 = 1; scoreSelected = true" style="background-color: rgb(196, 79, 79, 0.5);">1</button>
@@ -196,7 +196,13 @@ export default {
          * @description Recharge la page
          */
         reloadPage(){
-            window.location.reload()
+            this.$parent.$parent.formDoned = false;
+            let newPlayerList = [];
+            for(let i = 0; i < this.playerList.length; i++){
+                newPlayerList[i] = this.playerList[i].nom;
+            }
+            this.$parent.newPlayerList = newPlayerList;
+            this.$router.push('/game')
         },
         /**
          * @method getWinner()
