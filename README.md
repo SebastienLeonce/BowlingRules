@@ -1,6 +1,5 @@
 # BOWLING
 
-![GitHub labels](https://img.shields.io/github/labels/SebastienLeonce/BowlingRules/Sprint%202?style=for-the-badge)
 ![Build Status](https://img.shields.io/github/workflow/status/SebastienLeonce/BowlingRules/CI?style=for-the-badge)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/SebastienLeonce/BowlingRules?style=for-the-badge) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/SebastienLeonce/BowlingRules?style=for-the-badge)<br>
